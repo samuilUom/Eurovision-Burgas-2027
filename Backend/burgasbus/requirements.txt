@@ -1,0 +1,2 @@
+# Official GTFS-Realtime Python bindings; install only on the importer server.
+gtfs-realtime-bindings>=1.0.0,<2

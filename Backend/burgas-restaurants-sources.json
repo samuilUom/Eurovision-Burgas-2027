@@ -1,0 +1,1343 @@
+{
+  "checked_on": "2026-10-06",
+  "coverage": "Reviewed restaurant listings within the selected Burgas city area; not an exhaustive census. No photos, descriptions, ratings or reviews copied.",
+  "google_check_scope": "Indexed public Google Maps listings and restaurant-owned map links. Only records with google_crosscheck_url have an additional Google check; generated google_maps_url fields are navigation links, not evidence of verification.",
+  "records": [
+    {
+      "name": "Ambra bar & dinner",
+      "address": "Бул. “Сан Стефано” 129",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/ambra-bar-dinner",
+      "latitude": 42.503418,
+      "longitude": 27.4734449,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Ambra%20bar%20%26%20dinner%2C%20%D0%91%D1%83%D0%BB.%20%E2%80%9C%D0%A1%D0%B0%D0%BD%20%D0%A1%D1%82%D0%B5%D1%84%D0%B0%D0%BD%D0%BE%E2%80%9D%20129",
+      "website": "https://www.ambra-restaurant.com/bg/menu",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "6156014a-56e5-5609-ae26-f78d56970cd0",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Bistro Roma",
+      "address": "Бургас, ул. Сердика 2",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-roma",
+      "latitude": 42.4962676,
+      "longitude": 27.4703676,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Bistro%20Roma%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D1%83%D0%BB.%20%D0%A1%D0%B5%D1%80%D0%B4%D0%B8%D0%BA%D0%B0%202",
+      "website": "https://triagroup.bg/restoranti/bistro-roma/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "e039c10e-3b6e-57d7-8cf2-56363f68d9a3",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "BMS Българска кухня",
+      "address": "ул. Сливница 21, Център, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bms-bulgarian-cuisine",
+      "latitude": 42.4961667,
+      "longitude": 27.4708014,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=BMS%20%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D1%81%D0%BA%D0%B0%20%D0%BA%D1%83%D1%85%D0%BD%D1%8F%2C%20%D1%83%D0%BB.%20%D0%A1%D0%BB%D0%B8%D0%B2%D0%BD%D0%B8%D1%86%D0%B0%2021%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "http://bmsfood.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "7b4484f9-7c73-59e4-825b-094a6bb6d4c2",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Cachot Kitchen & Bar",
+      "address": "ул. Райна Княгиня 15, Бургас Център",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/cachot-kitchen-bar",
+      "latitude": 42.4936193,
+      "longitude": 27.4766235,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Cachot%20Kitchen%20%26%20Bar%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B0%D0%B9%D0%BD%D0%B0%20%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F%2015%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80",
+      "website": "https://dishboard.eu/cachot-kitchen-bar/menu/menyu?fbclid=IwdGRjcAQokMVleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEeveGeWUxMCqA6y7zqwDa5wQapsLglwJ9yuN1gIlTNT3IsfBgE58ASPfFfsjI_aem_V9HNwV-yfxp5XW8oReRlHQ",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/restaurants%2BBurgas",
+      "id": "3896443a-da79-5c01-8f7a-2bbade66e166",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Flora Bar & Grill",
+      "address": "Бургас, бул. Даме Груев 2, ниво 2 - Комплекс Central Park Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/flora-bar-grill",
+      "latitude": 42.5111439,
+      "longitude": 27.4595072,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Flora%20Bar%20%26%20Grill%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D0%B1%D1%83%D0%BB.%20%D0%94%D0%B0%D0%BC%D0%B5%20%D0%93%D1%80%D1%83%D0%B5%D0%B2%202%2C%20%D0%BD%D0%B8%D0%B2%D0%BE%202%20-%20%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81%20Central%20Park%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://triagroup.bg/restoranti/flora-bar-and-grill/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "1f95ac38-c49f-553c-9e24-2de9547cba56",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "GOTi Family & Kitchen — Зорница",
+      "address": "ж.к. Зорница 78, 8018 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/goti",
+      "latitude": 42.5194868,
+      "longitude": 27.4662001,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=GOTi%20Family%20%26%20Kitchen%20%E2%80%94%20%D0%97%D0%BE%D1%80%D0%BD%D0%B8%D1%86%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%97%D0%BE%D1%80%D0%BD%D0%B8%D1%86%D0%B0%2078%2C%208018%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://goti.bg/contacts",
+      "hours": [
+        {
+          "weekday": 1,
+          "opens": 480,
+          "closes": 1440
+        },
+        {
+          "weekday": 2,
+          "opens": 480,
+          "closes": 1440
+        },
+        {
+          "weekday": 3,
+          "opens": 480,
+          "closes": 1440
+        },
+        {
+          "weekday": 4,
+          "opens": 480,
+          "closes": 1440
+        },
+        {
+          "weekday": 5,
+          "opens": 480,
+          "closes": 1440
+        },
+        {
+          "weekday": 6,
+          "opens": 480,
+          "closes": 1440
+        },
+        {
+          "weekday": 7,
+          "opens": 480,
+          "closes": 1440
+        }
+      ],
+      "extra_sources": [
+        "https://goti.bg/contacts"
+      ],
+      "coordinate_basis": "Google Maps embed published on the restaurant contact page; replaces conflicting directory branch point.",
+      "id": "9c54a5fa-e849-537b-94dd-93f28107af8b",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Happy Bar & Grill — Лазур",
+      "address": "ж.к. Лазур, кв. 41, между бл. 5 и бл. 7, Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/happy-bar-grill",
+      "latitude": 42.5015246,
+      "longitude": 27.4797656,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Happy%20Bar%20%26%20Grill%20%E2%80%94%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2C%20%D0%B6.%D0%BA.%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2C%20%D0%BA%D0%B2.%2041%2C%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%20%D0%B1%D0%BB.%205%20%D0%B8%20%D0%B1%D0%BB.%207%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://happy.bg/",
+      "hours": null,
+      "extra_sources": [
+        "https://happy.bg/restaurants/16/happy-lazur-burgas",
+        "https://happy.bg/restaurants",
+        "https://myburgas.com/pages/directory/restaurant-happy-bar-grill-lazur"
+      ],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "hours_note": "Conflicting hours within official pages; kept unknown.",
+      "id": "7a875f4a-ccc4-5318-a79c-32c4a155a199",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "KAMYNITE pizza | bar | dinner",
+      "address": "ул. Буревестник 4, кв. Сарафово, Бургас",
+      "latitude": 42.558456,
+      "longitude": 27.5163876,
+      "website": "https://kamynite.bg/bg/about",
+      "source_url": "https://kamynite.bg/bg/about",
+      "extra_sources": [
+        "https://hotelkamynite.com/bg/restaurants"
+      ],
+      "hours": [
+        {
+          "weekday": 1,
+          "opens": 480,
+          "closes": 1410
+        },
+        {
+          "weekday": 2,
+          "opens": 480,
+          "closes": 1410
+        },
+        {
+          "weekday": 3,
+          "opens": 480,
+          "closes": 1410
+        },
+        {
+          "weekday": 4,
+          "opens": 480,
+          "closes": 1410
+        },
+        {
+          "weekday": 5,
+          "opens": 480,
+          "closes": 1410
+        },
+        {
+          "weekday": 6,
+          "opens": 480,
+          "closes": 1410
+        },
+        {
+          "weekday": 7,
+          "opens": 480,
+          "closes": 1410
+        }
+      ],
+      "coordinate_basis": "Restaurant-owned contact-page link: Google Maps place coordinates !3d42.558456!4d27.5163876.",
+      "google_crosscheck_url": "https://www.google.com/maps/place/KAMYNITE+pizza%7Cbar%7Cdinner/@42.5584676,27.5163726,15z/data=!4m6!3m5!1s0x40a6972fde1f0e43:0x5dba564de2f07002!8m2!3d42.558456!4d27.5163876!16s%2Fg%2F1tdq91vv?entry=ttu",
+      "id": "102f28b2-5495-5529-8a2d-577aebd6dad4",
+      "checked_on": "2026-10-06",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=KAMYNITE%20pizza%20%7C%20bar%20%7C%20dinner%2C%20%D1%83%D0%BB.%20%D0%91%D1%83%D1%80%D0%B5%D0%B2%D0%B5%D1%81%D1%82%D0%BD%D0%B8%D0%BA%204%2C%20%D0%BA%D0%B2.%20%D0%A1%D0%B0%D1%80%D0%B0%D1%84%D0%BE%D0%B2%D0%BE%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81"
+    },
+    {
+      "name": "La Ferme Steakhouse",
+      "address": "бул. Даме Груев 16, партер вход откъм площада на Central Park, Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/la-ferme-steakhouse",
+      "latitude": 42.5110852,
+      "longitude": 27.4578823,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=La%20Ferme%20Steakhouse%2C%20%D0%B1%D1%83%D0%BB.%20%D0%94%D0%B0%D0%BC%D0%B5%20%D0%93%D1%80%D1%83%D0%B5%D0%B2%2016%2C%20%D0%BF%D0%B0%D1%80%D1%82%D0%B5%D1%80%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%BE%D1%82%D0%BA%D1%8A%D0%BC%20%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B0%20%D0%BD%D0%B0%20Central%20Park%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://triagroup.bg/restoranti/la-ferme-steakhouse/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "89473c3b-a1d1-5e01-b696-d5fa190506f4",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Manjari",
+      "address": "Burgas Center, ul. \"Kont Androvanti\" 9, 8000 Burgas",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/manjari-",
+      "latitude": 42.4926725,
+      "longitude": 27.4715982,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Manjari%2C%20Burgas%20Center%2C%20ul.%20%22Kont%20Androvanti%22%209%2C%208000%20Burgas",
+      "website": "https://manjarikitchen.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "a21f127e-23c2-58b5-97c4-649eec35bf79",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Medusa",
+      "address": "Лазур, ul. \"Adam Mickiewicz\" 7, 8000 Burgas",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/medusa-",
+      "latitude": 42.5006433,
+      "longitude": 27.4798127,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Medusa%2C%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2C%20ul.%20%22Adam%20Mickiewicz%22%207%2C%208000%20Burgas",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "3acdc909-3a45-5a0f-b2ef-efe020f80b1c",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Opera Garden",
+      "address": "ул. Любен Каравелов 36, Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/opera",
+      "latitude": 42.4987365,
+      "longitude": 27.4666518,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Opera%20Garden%2C%20%D1%83%D0%BB.%20%D0%9B%D1%8E%D0%B1%D0%B5%D0%BD%20%D0%9A%D0%B0%D1%80%D0%B0%D0%B2%D0%B5%D0%BB%D0%BE%D0%B2%2036%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://operagarden.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/Dinner%2Bat%2BThe%2BRoom%2C%2BBurgas%2C%2BBulgaria",
+      "id": "5a3cc81b-1b82-56e2-bd28-a129f7368347",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Parallel Lounge Burgas",
+      "address": "гр. Бургас, Приморски парк Обект позиция - E26 H1, Моркса градина Северен паркинг",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/parallel-lounge-burgas",
+      "latitude": 42.5087833,
+      "longitude": 27.4835584,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Parallel%20Lounge%20Burgas%2C%20%D0%B3%D1%80.%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D0%BF%D0%B0%D1%80%D0%BA%20%D0%9E%D0%B1%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D0%B8%D1%8F%20-%20E26%20H1%2C%20%D0%9C%D0%BE%D1%80%D0%BA%D1%81%D0%B0%20%D0%B3%D1%80%D0%B0%D0%B4%D0%B8%D0%BD%D0%B0%20%D0%A1%D0%B5%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%20%D0%BF%D0%B0%D1%80%D0%BA%D0%B8%D0%BD%D0%B3",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "4616681d-1300-5776-a523-a31d51c853fe",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ponzu Sushi",
+      "address": "Burgas Center, ul. \"Makedonia\" 17, 8000 Burgas, Bulgaria",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/ponzu-sushi",
+      "latitude": 42.5007353,
+      "longitude": 27.4688233,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Ponzu%20Sushi%2C%20Burgas%20Center%2C%20ul.%20%22Makedonia%22%2017%2C%208000%20Burgas%2C%20Bulgaria",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "552c9a76-e67e-5b97-ad63-468360047aad",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Sale & Pepe",
+      "address": "Комплекс Перла, блок 5, ж.к. Зорница",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/sale-pepe",
+      "latitude": 42.5130202,
+      "longitude": 27.4689702,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Sale%20%26%20Pepe%2C%20%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81%20%D0%9F%D0%B5%D1%80%D0%BB%D0%B0%2C%20%D0%B1%D0%BB%D0%BE%D0%BA%205%2C%20%D0%B6.%D0%BA.%20%D0%97%D0%BE%D1%80%D0%BD%D0%B8%D1%86%D0%B0",
+      "website": "https://saleandpepe.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "70168253-617d-5e16-94ac-20ea3a10c17f",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ti Bar & Kitchen",
+      "address": "улица Силистра №4",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/ti-bar-kitchen",
+      "latitude": 42.4950778,
+      "longitude": 27.4723444,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Ti%20Bar%20%26%20Kitchen%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A1%D0%B8%D0%BB%D0%B8%D1%81%D1%82%D1%80%D0%B0%20%E2%84%964",
+      "website": "https://ti-bar.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/Dinner%2Bat%2BThe%2BSea%2BTerrace%2C%2BBurgas%2C%2BBulgaria",
+      "id": "4a31e885-8212-589b-ac3d-3275ed86deab",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "TRE",
+      "address": "гр. Бургас, ул. Трайко Китанчев 26",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/tre",
+      "latitude": 42.49744829999999,
+      "longitude": 27.4737474,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=TRE%2C%20%D0%B3%D1%80.%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D1%83%D0%BB.%20%D0%A2%D1%80%D0%B0%D0%B9%D0%BA%D0%BE%20%D0%9A%D0%B8%D1%82%D0%B0%D0%BD%D1%87%D0%B5%D0%B2%2026",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "084a8193-fb15-587d-9a8b-6a26845eb987",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бирария Даляна",
+      "address": "8014 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/dalyana-brewery",
+      "latitude": 42.4444398,
+      "longitude": 27.5315919,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%80%D0%B0%D1%80%D0%B8%D1%8F%20%D0%94%D0%B0%D0%BB%D1%8F%D0%BD%D0%B0%2C%208014%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "362a6644-69fa-5c8a-bbdc-a976e580da23",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро \"Алегро\"",
+      "address": "Васил Априлов 14, Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-allegro",
+      "latitude": 42.4946176,
+      "longitude": 27.4707985,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%22%D0%90%D0%BB%D0%B5%D0%B3%D1%80%D0%BE%22%2C%20%D0%92%D0%B0%D1%81%D0%B8%D0%BB%20%D0%90%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B2%2014%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://allegroburgas.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "927c7efc-8d28-55de-a98b-26247efb7dba",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро Lazuro",
+      "address": "ж.к. Лазур, ул. Копривщица 15, 8001 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-lazuro",
+      "latitude": 42.5084863,
+      "longitude": 27.4731173,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20Lazuro%2C%20%D0%B6.%D0%BA.%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2C%20%D1%83%D0%BB.%20%D0%9A%D0%BE%D0%BF%D1%80%D0%B8%D0%B2%D1%89%D0%B8%D1%86%D0%B0%2015%2C%208001%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "3eee9020-20a5-587b-8c2b-5f0833563453",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро Белека",
+      "address": "ж.к. Изгрев, бл. 109, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-beleka",
+      "latitude": 42.524384,
+      "longitude": 27.4650416,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%D0%91%D0%B5%D0%BB%D0%B5%D0%BA%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%98%D0%B7%D0%B3%D1%80%D0%B5%D0%B2%2C%20%D0%B1%D0%BB.%20109%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "b301aa1d-14f1-5ce2-893b-4ae0f8d6e5ba",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро Гилзата",
+      "address": "ж.к. Възраждане, ул. Сливница 11-13, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-gilzata",
+      "latitude": 42.4960573,
+      "longitude": 27.469087,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%D0%93%D0%B8%D0%BB%D0%B7%D0%B0%D1%82%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%92%D1%8A%D0%B7%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5%2C%20%D1%83%D0%BB.%20%D0%A1%D0%BB%D0%B8%D0%B2%D0%BD%D0%B8%D1%86%D0%B0%2011-13%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "f6b7462b-de3e-5d53-912d-412c08f78f48",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро Ронер",
+      "address": "Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-roner",
+      "latitude": 42.4992481,
+      "longitude": 27.4689963,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%D0%A0%D0%BE%D0%BD%D0%B5%D1%80%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "aab23db9-8fc7-54e2-b0e7-14b53eb9644d",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро Тропикана",
+      "address": "8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-tropicana",
+      "latitude": 42.5036356,
+      "longitude": 27.4835624,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%D0%A2%D1%80%D0%BE%D0%BF%D0%B8%D0%BA%D0%B0%D0%BD%D0%B0%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "f474d513-fc96-5ebb-8de1-f11abeab1cc6",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Бистро Уест",
+      "address": "Парк Езеро, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-west",
+      "latitude": 42.5110663,
+      "longitude": 27.4797788,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%D0%A3%D0%B5%D1%81%D1%82%2C%20%D0%9F%D0%B0%D1%80%D0%BA%20%D0%95%D0%B7%D0%B5%D1%80%D0%BE%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "http://www.birariawest.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "90e57e4a-72f4-50f6-a633-4c5e2f835345",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "бистро ЧАДЪРА",
+      "address": "Приморски парк - Бургас, до Летен театър",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-chadar",
+      "latitude": 42.4983365,
+      "longitude": 27.4804621,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%B1%D0%B8%D1%81%D1%82%D1%80%D0%BE%20%D0%A7%D0%90%D0%94%D0%AA%D0%A0%D0%90%2C%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D0%BF%D0%B0%D1%80%D0%BA%20-%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D0%B4%D0%BE%20%D0%9B%D0%B5%D1%82%D0%B5%D0%BD%20%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "1d498c93-16b0-593b-9608-100557b056c4",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ботега",
+      "address": "ж.к. Лазур 77, 8001 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/botega",
+      "latitude": 42.5022747,
+      "longitude": 27.4770392,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%82%D0%B5%D0%B3%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2077%2C%208001%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "a4718a09-3721-5bd9-aef9-8e64a8677f10",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Вкусно",
+      "address": "ж.к. Изгрев, бл. 133, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/delicious",
+      "latitude": 42.5224161,
+      "longitude": 27.4602323,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%92%D0%BA%D1%83%D1%81%D0%BD%D0%BE%2C%20%D0%B6.%D0%BA.%20%D0%98%D0%B7%D0%B3%D1%80%D0%B5%D0%B2%2C%20%D0%B1%D0%BB.%20133%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://vkusno-burgas.com/contacts/",
+      "hours": [
+        {
+          "weekday": 2,
+          "opens": 600,
+          "closes": 1110
+        },
+        {
+          "weekday": 3,
+          "opens": 600,
+          "closes": 1110
+        },
+        {
+          "weekday": 4,
+          "opens": 600,
+          "closes": 1110
+        },
+        {
+          "weekday": 5,
+          "opens": 600,
+          "closes": 1110
+        },
+        {
+          "weekday": 6,
+          "opens": 600,
+          "closes": 1110
+        },
+        {
+          "weekday": 7,
+          "opens": 600,
+          "closes": 1080
+        }
+      ],
+      "extra_sources": [
+        "https://vkusno-burgas.com/contacts/"
+      ],
+      "coordinate_basis": "Google Maps embed on the restaurant contact page; replaces conflicting central-city directory point.",
+      "id": "79bcf008-0925-561b-8c46-99ea21cf700d",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Гирос",
+      "address": "ул. Сливница 2, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/gyros",
+      "latitude": 42.4961723,
+      "longitude": 27.4709104,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%93%D0%B8%D1%80%D0%BE%D1%81%2C%20%D1%83%D0%BB.%20%D0%A1%D0%BB%D0%B8%D0%B2%D0%BD%D0%B8%D1%86%D0%B0%202%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "b19ccc37-6973-560f-a483-9ff7d31b2808",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Гранд'Италия",
+      "address": "ул. Перущица, 8001 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/granditalia",
+      "latitude": 42.5100005,
+      "longitude": 27.47268,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%93%D1%80%D0%B0%D0%BD%D0%B4%27%D0%98%D1%82%D0%B0%D0%BB%D0%B8%D1%8F%2C%20%D1%83%D0%BB.%20%D0%9F%D0%B5%D1%80%D1%83%D1%89%D0%B8%D1%86%D0%B0%2C%208001%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "fb743a02-c4e3-56ac-8e71-65a5308ca07f",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Грация Пицария",
+      "address": "ул. Въстаническа 22, Меден рудник, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/gratsiya-pizzaria",
+      "latitude": 42.4575638,
+      "longitude": 27.4066772,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%93%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F%2C%20%D1%83%D0%BB.%20%D0%92%D1%8A%D1%81%D1%82%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%2022%2C%20%D0%9C%D0%B5%D0%B4%D0%B5%D0%BD%20%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "http://gracia-restaurant.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "560980fd-44c6-5262-9b63-a3144a5c6d50",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Грог",
+      "address": "ж.к. Славейков 135, 8005 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/grog",
+      "latitude": 42.5161836,
+      "longitude": 27.4571502,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%93%D1%80%D0%BE%D0%B3%2C%20%D0%B6.%D0%BA.%20%D0%A1%D0%BB%D0%B0%D0%B2%D0%B5%D0%B9%D0%BA%D0%BE%D0%B2%20135%2C%208005%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/restaurants%2BBurgas",
+      "id": "930273ef-c6e4-5ef8-bb9a-a1fd0eb3c1c2",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Гролш",
+      "address": "ул. 24-ти Пехотен Черноморски полк 12, Приморски парк, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/grolsh",
+      "latitude": 42.503873,
+      "longitude": 27.4814758,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%93%D1%80%D0%BE%D0%BB%D1%88%2C%20%D1%83%D0%BB.%2024-%D1%82%D0%B8%20%D0%9F%D0%B5%D1%85%D0%BE%D1%82%D0%B5%D0%BD%20%D0%A7%D0%B5%D1%80%D0%BD%D0%BE%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D0%BF%D0%BE%D0%BB%D0%BA%2012%2C%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D0%BF%D0%B0%D1%80%D0%BA%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "1733c717-d30a-53cd-8cd6-0ea8b29cdaa9",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Даляна",
+      "address": "Пристанищен комплекс, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/dalyana",
+      "latitude": 42.4879766,
+      "longitude": 27.4809708,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%B0%D0%BB%D1%8F%D0%BD%D0%B0%2C%20%D0%9F%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B8%D1%89%D0%B5%D0%BD%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://dalianaburgas.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "c272eb88-9356-563a-ba4a-10d7f14b5696",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "ДАС Марина Бургас",
+      "address": "Морска гара Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/das-marina-burgas",
+      "latitude": 42.4848411,
+      "longitude": 27.482603,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%90%D0%A1%20%D0%9C%D0%B0%D1%80%D0%B8%D0%BD%D0%B0%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%B0%20%D0%B3%D0%B0%D1%80%D0%B0%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://marinaburgas.bg/bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "eb3dab5c-6fa2-5ab2-a119-fab8c0992d72",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Джоли Роджър",
+      "address": "Морска гара Бургас, Пристанищен комплекс, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/jolly-roger",
+      "latitude": 42.4837095,
+      "longitude": 27.4825989,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%B6%D0%BE%D0%BB%D0%B8%20%D0%A0%D0%BE%D0%B4%D0%B6%D1%8A%D1%80%2C%20%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%B0%20%D0%B3%D0%B0%D1%80%D0%B0%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D0%9F%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B8%D1%89%D0%B5%D0%BD%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "e410d319-e0ae-5662-9f1c-8388a4add830",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Джърси",
+      "address": "ж.к. Братя Миладинови, ул. Вардар 27, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/jersy",
+      "latitude": 42.5043627,
+      "longitude": 27.469331,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%B6%D1%8A%D1%80%D1%81%D0%B8%2C%20%D0%B6.%D0%BA.%20%D0%91%D1%80%D0%B0%D1%82%D1%8F%20%D0%9C%D0%B8%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD%D0%BE%D0%B2%D0%B8%2C%20%D1%83%D0%BB.%20%D0%92%D0%B0%D1%80%D0%B4%D0%B0%D1%80%2027%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "2478f898-aae4-5161-999f-48c0e8fb2136",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Диверсо",
+      "address": "ул. „Съединение“ №7",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/diverso-restaurant-bar",
+      "latitude": 42.49507149999999,
+      "longitude": 27.4768331,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%BE%2C%20%D1%83%D0%BB.%20%E2%80%9E%D0%A1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%E2%80%9C%20%E2%84%967",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/restaurants%2BBurgas",
+      "id": "19b92f23-b460-5137-a112-8e12c983c9fe",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Док 5",
+      "address": "Пристанищен комплекс, МАРИНА, 8000",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/dock-5",
+      "latitude": 42.4889072,
+      "longitude": 27.4794567,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%BE%D0%BA%205%2C%20%D0%9F%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B8%D1%89%D0%B5%D0%BD%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81%2C%20%D0%9C%D0%90%D0%A0%D0%98%D0%9D%D0%90%2C%208000",
+      "website": "https://restaurant.dock5.bg/bg",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/restaurants%2BBurgas",
+      "id": "f1b74424-d756-5e1a-b173-4bebaf57501b",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Домашна кухня Детелина",
+      "address": "Център, ул. Марагидик 16, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/detelina-home-kitchen",
+      "latitude": 42.4951858,
+      "longitude": 27.4708329,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B0%20%D0%BA%D1%83%D1%85%D0%BD%D1%8F%20%D0%94%D0%B5%D1%82%D0%B5%D0%BB%D0%B8%D0%BD%D0%B0%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B0%D1%80%D0%B0%D0%B3%D0%B8%D0%B4%D0%B8%D0%BA%2016%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "84d94d5b-a7f0-5f43-9310-2b7c03eb7742",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Етно ресторант",
+      "address": "ул. Михаил Лермонтов 7, Център, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/ethno-restaurant",
+      "latitude": 42.4941347,
+      "longitude": 27.4723766,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%95%D1%82%D0%BD%D0%BE%20%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%82%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%85%D0%B0%D0%B8%D0%BB%20%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%207%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "deb71e39-87c6-5a25-9533-70cdba99960d",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Замъка",
+      "address": "ж.к. Изгрев 701, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/the-castle",
+      "latitude": 42.5245851,
+      "longitude": 27.459428,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%97%D0%B0%D0%BC%D1%8A%D0%BA%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%98%D0%B7%D0%B3%D1%80%D0%B5%D0%B2%20701%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "d98f2908-d766-5429-a5a4-5658725984e4",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Златна Рибка",
+      "address": "ул. \"Цар Симеон I\" 3, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/golden-fish",
+      "latitude": 42.492861,
+      "longitude": 27.4802363,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B0%20%D0%A0%D0%B8%D0%B1%D0%BA%D0%B0%2C%20%D1%83%D0%BB.%20%22%D0%A6%D0%B0%D1%80%20%D0%A1%D0%B8%D0%BC%D0%B5%D0%BE%D0%BD%20I%22%203%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/Dinner%2Bat%2BThe%2BSea%2BTerrace%2C%2BBurgas%2C%2BBulgaria",
+      "id": "d874862e-302e-5e1e-a99c-e4233ffed42e",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Инканто",
+      "address": "пл. Баба Ганка 4, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/incanto",
+      "latitude": 42.497804,
+      "longitude": 27.4728414,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%98%D0%BD%D0%BA%D0%B0%D0%BD%D1%82%D0%BE%2C%20%D0%BF%D0%BB.%20%D0%91%D0%B0%D0%B1%D0%B0%20%D0%93%D0%B0%D0%BD%D0%BA%D0%B0%204%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://incanto.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/4%20Baba%20Ganka%20Sq.%2C%20Burgas%2C%208000%2C%20Bulgaria",
+      "id": "51b1cc94-2b6f-5fc2-86da-72e5325c6729",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Искендер Кебаб",
+      "address": "кв. Здраве, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/iskender-kebab",
+      "latitude": 42.526236,
+      "longitude": 27.4468195,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%98%D1%81%D0%BA%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%20%D0%9A%D0%B5%D0%B1%D0%B0%D0%B1%2C%20%D0%BA%D0%B2.%20%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D0%B5%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "3aa97cda-e750-506c-be32-c2acdfcf00c7",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Кардамон",
+      "address": "Център, бул. Алеко Богориди 27, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/cardamon",
+      "latitude": 42.4938122,
+      "longitude": 27.4764254,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9A%D0%B0%D1%80%D0%B4%D0%B0%D0%BC%D0%BE%D0%BD%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%20%D0%B1%D1%83%D0%BB.%20%D0%90%D0%BB%D0%B5%D0%BA%D0%BE%20%D0%91%D0%BE%D0%B3%D0%BE%D1%80%D0%B8%D0%B4%D0%B8%2027%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "c4b3682a-994d-565c-b9a4-ce7af2d126de",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Кинг Конг Бургер",
+      "address": "Център, ул. \"Силистра\" 1, 8001",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/king-kong-burger",
+      "latitude": 42.4949737,
+      "longitude": 27.4724737,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9A%D0%B8%D0%BD%D0%B3%20%D0%9A%D0%BE%D0%BD%D0%B3%20%D0%91%D1%83%D1%80%D0%B3%D0%B5%D1%80%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%20%D1%83%D0%BB.%20%22%D0%A1%D0%B8%D0%BB%D0%B8%D1%81%D1%82%D1%80%D0%B0%22%201%2C%208001",
+      "website": "http://kingkongburger.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "a76fa8c0-cb65-5def-a1a6-c7b4d90f6ef2",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Китайска Луна",
+      "address": "ул. \"Константин Фотинов\" 27, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/chinese-moon",
+      "latitude": 42.4940806,
+      "longitude": 27.4751123,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9A%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B0%20%D0%9B%D1%83%D0%BD%D0%B0%2C%20%D1%83%D0%BB.%20%22%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D0%B0%D0%BD%D1%82%D0%B8%D0%BD%20%D0%A4%D0%BE%D1%82%D0%B8%D0%BD%D0%BE%D0%B2%22%2027%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://menu.tabl.bg/chinese-moon",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "a6c335d1-eef3-598d-816b-4195bacb9c0b",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Китайска храна Тройката",
+      "address": "Център, ул. Сливница 2, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/chinese-food-troykata",
+      "latitude": 42.4961899,
+      "longitude": 27.47099,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9A%D0%B8%D1%82%D0%B0%D0%B9%D1%81%D0%BA%D0%B0%20%D1%85%D1%80%D0%B0%D0%BD%D0%B0%20%D0%A2%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%D1%82%D0%B0%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%20%D1%83%D0%BB.%20%D0%A1%D0%BB%D0%B8%D0%B2%D0%BD%D0%B8%D1%86%D0%B0%202%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "f70a0c48-aa18-505e-b017-b93a2ac8980e",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Криго",
+      "address": "ж.к. Меден рудник 248, 8011 Меден Рудник",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/krigo",
+      "latitude": 42.4621287,
+      "longitude": 27.4146244,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9A%D1%80%D0%B8%D0%B3%D0%BE%2C%20%D0%B6.%D0%BA.%20%D0%9C%D0%B5%D0%B4%D0%B5%D0%BD%20%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%20248%2C%208011%20%D0%9C%D0%B5%D0%B4%D0%B5%D0%BD%20%D0%A0%D1%83%D0%B4%D0%BD%D0%B8%D0%BA",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "6057c2a5-b12c-573d-8cf1-c7014a6dec89",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ла Флор Бар & Грил",
+      "address": "ж.к. Лазур, ул. Велико Търново 11, 8001 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/la-flor-bar-grill",
+      "latitude": 42.503726,
+      "longitude": 27.4801671,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%B0%20%D0%A4%D0%BB%D0%BE%D1%80%20%D0%91%D0%B0%D1%80%20%26%20%D0%93%D1%80%D0%B8%D0%BB%2C%20%D0%B6.%D0%BA.%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2C%20%D1%83%D0%BB.%20%D0%92%D0%B5%D0%BB%D0%B8%D0%BA%D0%BE%20%D0%A2%D1%8A%D1%80%D0%BD%D0%BE%D0%B2%D0%BE%2011%2C%208001%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://laflor.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "46eab348-45e1-53e4-a766-5b0c0ecee700",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Лично",
+      "address": "ул. Булаир 27, Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/lichno",
+      "latitude": 42.4920264,
+      "longitude": 27.4789338,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%B8%D1%87%D0%BD%D0%BE%2C%20%D1%83%D0%BB.%20%D0%91%D1%83%D0%BB%D0%B0%D0%B8%D1%80%2027%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "90bcb3a1-62d2-5d49-aaf7-07910600ed35",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Мамалига",
+      "address": "ж.к. Зорница, бл. 163, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/mamaliga",
+      "latitude": 42.5157972,
+      "longitude": 27.4677923,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9C%D0%B0%D0%BC%D0%B0%D0%BB%D0%B8%D0%B3%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%97%D0%BE%D1%80%D0%BD%D0%B8%D1%86%D0%B0%2C%20%D0%B1%D0%BB.%20163%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "fc4df785-5504-53ff-8716-9f93e64f2166",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Маркето",
+      "address": "бул.Демокрация, бл.117,",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/pjNmA4bftbxrtyUn1wQK",
+      "latitude": 42.5057112,
+      "longitude": 27.4719746,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9C%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BE%2C%20%D0%B1%D1%83%D0%BB.%D0%94%D0%B5%D0%BC%D0%BE%D0%BA%D1%80%D0%B0%D1%86%D0%B8%D1%8F%2C%20%D0%B1%D0%BB.117%2C",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "b748fc03-7816-5400-9e93-1b7cf73c53b4",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Мейзънс Стрийт",
+      "address": "ж.к. Славейков бл. 60, 8005 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/maisons-street",
+      "latitude": 42.512746,
+      "longitude": 27.4584201,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9C%D0%B5%D0%B9%D0%B7%D1%8A%D0%BD%D1%81%20%D0%A1%D1%82%D1%80%D0%B8%D0%B9%D1%82%2C%20%D0%B6.%D0%BA.%20%D0%A1%D0%BB%D0%B0%D0%B2%D0%B5%D0%B9%D0%BA%D0%BE%D0%B2%20%D0%B1%D0%BB.%2060%2C%208005%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://maisonstrust.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/Dinner%2Bat%2BThe%2BRoom%2C%2BBurgas%2C%2BBulgaria",
+      "id": "89895b79-4774-5160-869e-0b83ee42ec88",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Механа Балканска среща",
+      "address": "ж.к. Петко Р. Славейков, бл. 72, 8010 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/tavern-balkan-meeting",
+      "latitude": 42.5168978,
+      "longitude": 27.4505228,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9C%D0%B5%D1%85%D0%B0%D0%BD%D0%B0%20%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%20%D1%81%D1%80%D0%B5%D1%89%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%9F%D0%B5%D1%82%D0%BA%D0%BE%20%D0%A0.%20%D0%A1%D0%BB%D0%B0%D0%B2%D0%B5%D0%B9%D0%BA%D0%BE%D0%B2%2C%20%D0%B1%D0%BB.%2072%2C%208010%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "1c56626f-ac3c-5fba-946f-d26124c14248",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Морски сговор",
+      "address": "рибарско селище Клуб-Морски сговор, 8014 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/sea-conspiracy",
+      "latitude": 42.4351924,
+      "longitude": 27.5282495,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D1%81%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%2C%20%D1%80%D0%B8%D0%B1%D0%B0%D1%80%D1%81%D0%BA%D0%BE%20%D1%81%D0%B5%D0%BB%D0%B8%D1%89%D0%B5%20%D0%9A%D0%BB%D1%83%D0%B1-%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D1%81%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%2C%208014%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "7d6617c9-035b-5bf1-b8b2-1f422ebe49a0",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Нори",
+      "address": "бул. Алеко Богориди 38, Център, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/nori",
+      "latitude": 42.4939009,
+      "longitude": 27.4763989,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%BE%D1%80%D0%B8%2C%20%D0%B1%D1%83%D0%BB.%20%D0%90%D0%BB%D0%B5%D0%BA%D0%BE%20%D0%91%D0%BE%D0%B3%D0%BE%D1%80%D0%B8%D0%B4%D0%B8%2038%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "http://norisushi.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "9253c44e-d2fe-56b4-80d3-5943b6d40452",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ореха",
+      "address": "Алеко Богориди 51, 8000",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/oreha",
+      "latitude": 42.494056,
+      "longitude": 27.4792166,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9E%D1%80%D0%B5%D1%85%D0%B0%2C%20%D0%90%D0%BB%D0%B5%D0%BA%D0%BE%20%D0%91%D0%BE%D0%B3%D0%BE%D1%80%D0%B8%D0%B4%D0%B8%2051%2C%208000",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "3967f373-8c69-5b50-a523-bd12b8c404bf",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Пиаца Гранде",
+      "address": "ул. \"Морска\" 12А, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/piazza-grande",
+      "latitude": 42.4927767,
+      "longitude": 27.4789288,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B8%D0%B0%D1%86%D0%B0%20%D0%93%D1%80%D0%B0%D0%BD%D0%B4%D0%B5%2C%20%D1%83%D0%BB.%20%22%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%B0%22%2012%D0%90%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "2fd123f8-444c-5519-8b50-6a1cdc983213",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Пица Шоп",
+      "address": "ул. Сливница 4, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/pizza-shop",
+      "latitude": 42.4961195,
+      "longitude": 27.470629,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B8%D1%86%D0%B0%20%D0%A8%D0%BE%D0%BF%2C%20%D1%83%D0%BB.%20%D0%A1%D0%BB%D0%B8%D0%B2%D0%BD%D0%B8%D1%86%D0%B0%204%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "f13c5120-76f9-5b99-b045-3b3e30c91d14",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Пицария Monte Pizza",
+      "address": "Гр. Бургас ж.к. Възраждане ул. Ивайло 24",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/pizzeria-monte-pizza",
+      "latitude": 42.4930112,
+      "longitude": 27.465541,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F%20Monte%20Pizza%2C%20%D0%93%D1%80.%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%20%D0%B6.%D0%BA.%20%D0%92%D1%8A%D0%B7%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5%20%D1%83%D0%BB.%20%D0%98%D0%B2%D0%B0%D0%B9%D0%BB%D0%BE%2024",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "430298ec-d0af-5b09-9b3e-650ca1a2f372",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "При музея",
+      "address": "ул. Антим I 28, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/at-the-museum",
+      "latitude": 42.4934042,
+      "longitude": 27.4758811,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%9F%D1%80%D0%B8%20%D0%BC%D1%83%D0%B7%D0%B5%D1%8F%2C%20%D1%83%D0%BB.%20%D0%90%D0%BD%D1%82%D0%B8%D0%BC%20I%2028%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "a96fc691-605f-5af4-ae8e-595e5b13deb0",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Реверанс",
+      "address": "ж.к. Изгрев, бл. 144, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/reverence",
+      "latitude": 42.5266264,
+      "longitude": 27.4625687,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%B5%D0%B2%D0%B5%D1%80%D0%B0%D0%BD%D1%81%2C%20%D0%B6.%D0%BA.%20%D0%98%D0%B7%D0%B3%D1%80%D0%B5%D0%B2%2C%20%D0%B1%D0%BB.%20144%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "2ff75058-4973-5381-8481-d42789c8b4e3",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ресторант 8 Mama's",
+      "address": "ул. Булаир 35",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/restaurant-8-mamas",
+      "latitude": 42.49255,
+      "longitude": 27.479609999999997,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%82%208%20Mama%27s%2C%20%D1%83%D0%BB.%20%D0%91%D1%83%D0%BB%D0%B0%D0%B8%D1%80%2035",
+      "website": "https://8mamas.menu/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "2da87612-695d-5d63-8545-ba263f3f9608",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ресторант Авеню Делукс",
+      "address": "Северна промишлена зона, бул. Транспортна 53, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/restaurant-avenue-deluxe",
+      "latitude": 42.5288557,
+      "longitude": 27.4536258,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%82%20%D0%90%D0%B2%D0%B5%D0%BD%D1%8E%20%D0%94%D0%B5%D0%BB%D1%83%D0%BA%D1%81%2C%20%D0%A1%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%BC%D0%B8%D1%88%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%B7%D0%BE%D0%BD%D0%B0%2C%20%D0%B1%D1%83%D0%BB.%20%D0%A2%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0%2053%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "http://www.avenuedeluxe.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "e7dfc229-eb4d-53ea-a39a-c87cb4cbcb90",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ресторант България - A La Carte Mezzanine",
+      "address": "Бургас, ул. Александровска 21, Бизнес хотел България",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/restaurant-bulgaria-a-la-carte-mezzanine",
+      "latitude": 42.492762,
+      "longitude": 27.473332,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%82%20%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F%20-%20A%20La%20Carte%20Mezzanine%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81%2C%20%D1%83%D0%BB.%20%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%2021%2C%20%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F",
+      "website": "https://www.bulgaria-hotel.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "e7eaee75-cc76-54b7-bf0a-2cc6ad6a6078",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ресторант Капана",
+      "address": "8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/kapana-restaurant",
+      "latitude": 42.5084744,
+      "longitude": 27.4838561,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%82%20%D0%9A%D0%B0%D0%BF%D0%B0%D0%BD%D0%B0%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "3615579e-334b-5040-99b3-b0aa7bf9a344",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Ресторант Нептун",
+      "address": "Централен плаж, Приморски парк, Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/neptune-restaurant",
+      "latitude": 42.49214,
+      "longitude": 27.481509,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%82%20%D0%9D%D0%B5%D0%BF%D1%82%D1%83%D0%BD%2C%20%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D0%B5%D0%BD%20%D0%BF%D0%BB%D0%B0%D0%B6%2C%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B8%20%D0%BF%D0%B0%D1%80%D0%BA%2C%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://www.neptunburgas.com/en/restaurant",
+      "hours": [
+        {
+          "weekday": 1,
+          "opens": 660,
+          "closes": 1410
+        },
+        {
+          "weekday": 2,
+          "opens": 660,
+          "closes": 1410
+        },
+        {
+          "weekday": 3,
+          "opens": 660,
+          "closes": 1410
+        },
+        {
+          "weekday": 4,
+          "opens": 660,
+          "closes": 1410
+        },
+        {
+          "weekday": 5,
+          "opens": 660,
+          "closes": 1410
+        },
+        {
+          "weekday": 6,
+          "opens": 660,
+          "closes": 1410
+        },
+        {
+          "weekday": 7,
+          "opens": 660,
+          "closes": 1410
+        }
+      ],
+      "extra_sources": [
+        "https://www.neptunburgas.com/en/contacts",
+        "https://myburgas.com/en/pages/directory/restaurant-neptun",
+        "https://live.restaurant.bg/restoranti/map/seaview-restaurants-burgas-beach-restoranti-s-morska-panorama-burgas-restorant-bar-neptun-burgas-4659"
+      ],
+      "coordinate_basis": "MyBurgas published GPS agrees with Central Beach address and nearby restaurant.bg point. Conflicting directory and owner site map points discarded.",
+      "google_crosscheck_url": "https://www.google.com/maps/search/Dinner%2Bat%2BThe%2BSea%2BTerrace%2C%2BBurgas%2C%2BBulgaria",
+      "id": "ef15ee98-9cc7-5e3b-a602-43a8c59bc499",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Романс пица",
+      "address": "парк Славейков, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/romance-pizza",
+      "latitude": 42.5176114,
+      "longitude": 27.4561978,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD%D1%81%20%D0%BF%D0%B8%D1%86%D0%B0%2C%20%D0%BF%D0%B0%D1%80%D0%BA%20%D0%A1%D0%BB%D0%B0%D0%B2%D0%B5%D0%B9%D0%BA%D0%BE%D0%B2%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://www.pizza-romance.com",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "2a4a9f89-bb1f-50d7-82ef-5cfd169a3abd",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Сезам",
+      "address": "Северна индустриална зона, бул. Стефан Стамболов, 8001 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/sezam",
+      "latitude": 42.5033194,
+      "longitude": 27.4697998,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%B5%D0%B7%D0%B0%D0%BC%2C%20%D0%A1%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%B0%20%D0%B8%D0%BD%D0%B4%D1%83%D1%81%D1%82%D1%80%D0%B8%D0%B0%D0%BB%D0%BD%D0%B0%20%D0%B7%D0%BE%D0%BD%D0%B0%2C%20%D0%B1%D1%83%D0%BB.%20%D0%A1%D1%82%D0%B5%D1%84%D0%B0%D0%BD%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D0%BE%D0%BB%D0%BE%D0%B2%2C%208001%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "a6a26eeb-22f4-5edf-9cd7-42f8d5482283",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Теньова къща",
+      "address": "ж.к. Петко Р. Славейков, 8005",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/tavern-tenyos-house",
+      "latitude": 42.5179201,
+      "longitude": 27.4556663,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A2%D0%B5%D0%BD%D1%8C%D0%BE%D0%B2%D0%B0%20%D0%BA%D1%8A%D1%89%D0%B0%2C%20%D0%B6.%D0%BA.%20%D0%9F%D0%B5%D1%82%D0%BA%D0%BE%20%D0%A0.%20%D0%A1%D0%BB%D0%B0%D0%B2%D0%B5%D0%B9%D0%BA%D0%BE%D0%B2%2C%208005",
+      "website": "https://tenyovakashta.com/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "fa23e0ed-b000-5443-b0dd-b259d2683848",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Чайнатаун",
+      "address": "ж.к. Изгрев 160, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/chinatown",
+      "latitude": 42.5224847,
+      "longitude": 27.4609546,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A7%D0%B0%D0%B9%D0%BD%D0%B0%D1%82%D0%B0%D1%83%D0%BD%2C%20%D0%B6.%D0%BA.%20%D0%98%D0%B7%D0%B3%D1%80%D0%B5%D0%B2%20160%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "http://www.chinatown.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "ce64d1a5-47e8-5180-84c6-c667df5b0095",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Черно и бяло",
+      "address": "ж.к. Лазур, 8001 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/black-and-white",
+      "latitude": 42.505374,
+      "longitude": 27.4754149,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%A7%D0%B5%D1%80%D0%BD%D0%BE%20%D0%B8%20%D0%B1%D1%8F%D0%BB%D0%BE%2C%20%D0%B6.%D0%BA.%20%D0%9B%D0%B0%D0%B7%D1%83%D1%80%2C%208001%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "5e3c1d30-21a5-544d-bc62-2c7796cf02d6",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Юнашка мръвка",
+      "address": "бул. Транспортна 35, Северна промишлена зона, 8008 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/heros-crumb",
+      "latitude": 42.5293219,
+      "longitude": 27.4566022,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%AE%D0%BD%D0%B0%D1%88%D0%BA%D0%B0%20%D0%BC%D1%80%D1%8A%D0%B2%D0%BA%D0%B0%2C%20%D0%B1%D1%83%D0%BB.%20%D0%A2%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0%2035%2C%20%D0%A1%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%BC%D0%B8%D1%88%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%B7%D0%BE%D0%BD%D0%B0%2C%208008%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": null,
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "e989b6f0-7fb5-592a-9512-81d7c9d25d4d",
+      "checked_on": "2026-10-06"
+    },
+    {
+      "name": "Явка Фуд Бар",
+      "address": "ул. \"Цар Симеон I\" 83, 8000 Бургас",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/yavka-food-bar",
+      "latitude": 42.4989763,
+      "longitude": 27.4739184,
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=%D0%AF%D0%B2%D0%BA%D0%B0%20%D0%A4%D1%83%D0%B4%20%D0%91%D0%B0%D1%80%2C%20%D1%83%D0%BB.%20%22%D0%A6%D0%B0%D1%80%20%D0%A1%D0%B8%D0%BC%D0%B5%D0%BE%D0%BD%20I%22%2083%2C%208000%20%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81",
+      "website": "https://yavka.bg/",
+      "hours": null,
+      "extra_sources": [],
+      "coordinate_basis": "Published map point in the individual Go to Burgas listing; not surveyed on site.",
+      "id": "0d063b59-ca36-50bd-8122-57783a2f6caa",
+      "checked_on": "2026-10-06"
+    }
+  ],
+  "excluded": [
+    {
+      "name": "Механа Чучура",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/mehana-chuchura",
+      "reason": "Published point conflicts with Antim I street; no independently confirmed pin."
+    },
+    {
+      "name": "Воденицата",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/the-mill-restaurant",
+      "reason": "Sea Garden address conflicts with central-city point."
+    },
+    {
+      "name": "Container Bar",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/container-bar",
+      "reason": "Ambiguous branch: Morska street/postcode conflict with northern-beach point."
+    },
+    {
+      "name": "Старият Капитан",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/the-old-captain",
+      "reason": "Central street address conflicts with point south of the city centre."
+    },
+    {
+      "name": "Попай фреш и смути",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/popai-fresh-smoothie",
+      "reason": "Juice counter, outside this restaurant import."
+    },
+    {
+      "name": "Кални момичета",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/kalni-momicheta",
+      "reason": "Beach venue; restaurant classification not independently confirmed."
+    },
+    {
+      "name": "Фууд бар Яв - Ка",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/food-bar-yav-ka",
+      "reason": "No map coordinates"
+    },
+    {
+      "name": "ДИВЕРСО",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/NDrbAmQOhV73C8z8cu0s",
+      "reason": "Duplicate of Diverso Restaurant Bar at the same coordinates."
+    },
+    {
+      "name": "Hungry Horse",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/hungry-horse",
+      "reason": "Outside selected Burgas city area"
+    },
+    {
+      "name": "Tony GiGi Burgas",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/tony-gigi-burgas",
+      "reason": "No map coordinates"
+    },
+    {
+      "name": "Андрювата механа",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/andryuvata-mehana",
+      "reason": "Lazur/Demokratsia address conflicts with Sea Garden point."
+    },
+    {
+      "name": "Чадъра",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/the-umbrella",
+      "reason": "Duplicate of the more detailed Bistro Chadar record."
+    },
+    {
+      "name": "място",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/coffee-new",
+      "reason": "No map coordinates"
+    },
+    {
+      "name": "Златна Котва",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/zlatna-kotva-golden-anchor",
+      "reason": "Generic address and coarse point; needs independent confirmation."
+    },
+    {
+      "name": "Мистрал",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/mistral",
+      "reason": "Outside selected Burgas city area"
+    },
+    {
+      "name": "На лугата",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/on-the-meadow",
+      "reason": "Beach venue with unspecified address; pending verification."
+    },
+    {
+      "name": "Далян \"Чайка\"",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/chaika-restaurant",
+      "reason": "Outside selected Burgas city area"
+    },
+    {
+      "name": "Gelato at Home",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/gelato-at-home",
+      "reason": "Outside selected Burgas city area"
+    },
+    {
+      "name": "Сладоледен салон \"Клио\"",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/clio-ice-cream",
+      "reason": "Outside selected Burgas city area"
+    },
+    {
+      "name": "La bottarga",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/la-bottarga-",
+      "reason": "Outside selected Burgas city area"
+    },
+    {
+      "name": "Бистро \"Bonela\"",
+      "source_url": "https://info.gotoburgas.com/bg/plan/food_drink/bistro-bonela",
+      "reason": "No map coordinates"
+    }
+  ]
+}

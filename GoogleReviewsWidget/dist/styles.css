@@ -1,0 +1,27 @@
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; --bg: #faf8f5; --surface: #fff; --text: #252023; --muted: #6d626b; --accent: #a34513; --border: #dfd5cb; }
+@media (prefers-color-scheme: dark) { :root { --bg: #171619; --surface: #242126; --text: #fff7f0; --muted: #c1b5c2; --accent: #ffb079; --border: #534352; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+main { width: min(100%, 540px); margin: auto; padding: 22px 16px max(22px, env(safe-area-inset-bottom)); }
+header { padding: 4px 2px 18px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+.eyebrow { font-size: 11px; letter-spacing: .12em; font-weight: 750; color: var(--accent); }
+h1 { font-size: clamp(25px, 7vw, 34px); line-height: 1.15; margin: 12px 0; overflow-wrap: anywhere; }
+p { line-height: 1.5; }
+#restaurant-address { color: var(--muted); font-size: 15px; margin: 0; }
+.source { font-size: 14px; font-weight: 650; margin-bottom: 0; }
+#status { padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin: 0 0 16px; line-height: 1.5; }
+#status[data-kind="error"] { border-color: var(--accent); }
+[hidden] { display: none !important; }
+form { margin-bottom: 16px; }
+label { font-size: 15px; font-weight: 650; }
+.search-row { display: flex; gap: 8px; margin-top: 8px; }
+input, button { font: inherit; border-radius: 12px; min-height: 46px; }
+input { min-width: 0; width: 100%; padding: 10px; background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+button { cursor: pointer; padding: 10px 14px; color: var(--accent); background: var(--surface); border: 1px solid var(--border); font-weight: 650; }
+button:disabled { opacity: .5; cursor: wait; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.hint { font-size: 13px; color: var(--muted); margin-bottom: 0; }
+.actions { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+gmp-place-search, gmp-place-details { display: block; width: 100%; border-radius: 18px; --gmp-mat-font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+footer { font-size: 12px; color: var(--muted); line-height: 1.55; margin-top: 22px; }
+a { color: var(--accent); }

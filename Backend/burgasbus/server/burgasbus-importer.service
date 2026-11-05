@@ -1,0 +1,37 @@
+[Unit]
+Description=Eurovision Burgas official bus data importer
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/etc/burgasbus/feeds.env
+
+[Service]
+Type=simple
+User=burgasbus
+Group=burgasbus
+WorkingDirectory=/opt/burgasbus
+EnvironmentFile=/etc/burgasbus/feeds.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStartPre=/opt/burgasbus/venv/bin/python /opt/burgasbus/check_configuration.py
+ExecStart=/opt/burgasbus/venv/bin/python /opt/burgasbus/import_feed.py --publish --watch
+Restart=on-failure
+RestartSec=60
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+# Use only IPv4 for external requests, so the reserved IPv4 is the allowlisted source.
+RestrictAddressFamilies=AF_UNIX AF_INET
+UMask=0077
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=burgasbus
+
+[Install]
+WantedBy=multi-user.target

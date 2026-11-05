@@ -1,0 +1,1139 @@
+-- Adds 76 real restaurant listings to the EXISTING Eurovision Burgas app database.
+-- Read RESTAURANTS.md for sources, corrections and limitations.
+-- Run this WHOLE file in a NEW Supabase SQL query as the project owner.
+-- Existing places, toilets, reviews, favorites and accounts are never overwritten or deleted.
+-- Does not grant admin status or change passwords. Repeat runs skip existing records.
+begin;
+
+-- Fail before any writes if the intended administrator account is missing.
+create temporary table restaurant_import_owner on commit drop as
+select p.id from public.profiles p join auth.users u on u.id = p.id
+where lower(u.email) = 'samuil.ivanov2008@gmail.com' and p.role = 'admin';
+do $owner_check$
+begin
+  if (select count(*) from restaurant_import_owner) <> 1 then
+    raise exception 'The existing administrator profile samuil.ivanov2008@gmail.com was not found. No restaurants were imported.';
+  end if;
+  if to_regclass('public.city_places') is null then
+    raise exception 'Run category-places-and-transit.sql first. No restaurants were imported.';
+  end if;
+end;
+$owner_check$;
+
+-- Add shared opening hours after category-places-and-transit.sql.
+-- Preserves places, accounts, reviews, favorites and existing row-level permissions.
+
+create or replace function public.valid_city_hours(value jsonb)
+returns boolean language plpgsql immutable set search_path = '' as $$
+declare h jsonb;
+begin
+  if value is null or value = 'null'::jsonb then return true; end if;
+  if jsonb_typeof(value) <> 'array' then return false; end if;
+  if jsonb_array_length(value) > 28 then return false; end if;
+  for h in select * from jsonb_array_elements(value) loop
+    if jsonb_typeof(h) <> 'object' or not (h ?& array['weekday','opens','closes']) then return false; end if;
+    if jsonb_typeof(h->'weekday') <> 'number' or jsonb_typeof(h->'opens') <> 'number'
+       or jsonb_typeof(h->'closes') <> 'number' then return false; end if;
+    if h->>'weekday' !~ '^[0-9]+$' or h->>'opens' !~ '^[0-9]+$' or h->>'closes' !~ '^[0-9]+$' then return false; end if;
+    if (h->>'weekday')::int not between 1 and 7 or (h->>'opens')::int not between 0 and 1439
+       or (h->>'closes')::int not between 0 and 1440 or (h->>'opens')::int = (h->>'closes')::int then return false; end if;
+  end loop;
+  return true;
+exception when others then return false;
+end;
+$$;
+revoke all on function public.valid_city_hours(jsonb) from public;
+grant execute on function public.valid_city_hours(jsonb) to anon, authenticated, service_role;
+alter table public.city_places add column if not exists hours jsonb;
+do $$ begin
+  if not exists(select 1 from pg_constraint where conname = 'city_places_hours_valid'
+      and conrelid = 'public.city_places'::regclass) then
+    alter table public.city_places add constraint city_places_hours_valid check (public.valid_city_hours(hours) is true);
+  end if;
+end $$;
+grant insert(hours), update(hours) on public.city_places to authenticated;
+
+create temporary table restaurant_import_seed on commit drop as
+select * from jsonb_to_recordset($restaurant_data$
+[
+  {
+    "id": "6156014a-56e5-5609-ae26-f78d56970cd0",
+    "category": "restaurants",
+    "name": "Ambra bar & dinner",
+    "address": "Бул. “Сан Стефано” 129",
+    "latitude": 42.503418,
+    "longitude": 27.4734449,
+    "website": "https://www.ambra-restaurant.com/bg/menu",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/ambra-bar-dinner . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "e039c10e-3b6e-57d7-8cf2-56363f68d9a3",
+    "category": "restaurants",
+    "name": "Bistro Roma",
+    "address": "Бургас, ул. Сердика 2",
+    "latitude": 42.4962676,
+    "longitude": 27.4703676,
+    "website": "https://triagroup.bg/restoranti/bistro-roma/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-roma . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "7b4484f9-7c73-59e4-825b-094a6bb6d4c2",
+    "category": "restaurants",
+    "name": "BMS Българска кухня",
+    "address": "ул. Сливница 21, Център, 8000 Бургас",
+    "latitude": 42.4961667,
+    "longitude": 27.4708014,
+    "website": "http://bmsfood.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bms-bulgarian-cuisine . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "3896443a-da79-5c01-8f7a-2bbade66e166",
+    "category": "restaurants",
+    "name": "Cachot Kitchen & Bar",
+    "address": "ул. Райна Княгиня 15, Бургас Център",
+    "latitude": 42.4936193,
+    "longitude": 27.4766235,
+    "website": "https://dishboard.eu/cachot-kitchen-bar/menu/menyu?fbclid=IwdGRjcAQokMVleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEeveGeWUxMCqA6y7zqwDa5wQapsLglwJ9yuN1gIlTNT3IsfBgE58ASPfFfsjI_aem_V9HNwV-yfxp5XW8oReRlHQ",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/cachot-kitchen-bar . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "1f95ac38-c49f-553c-9e24-2de9547cba56",
+    "category": "restaurants",
+    "name": "Flora Bar & Grill",
+    "address": "Бургас, бул. Даме Груев 2, ниво 2 - Комплекс Central Park Бургас",
+    "latitude": 42.5111439,
+    "longitude": 27.4595072,
+    "website": "https://triagroup.bg/restoranti/flora-bar-and-grill/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/flora-bar-grill . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "9c54a5fa-e849-537b-94dd-93f28107af8b",
+    "category": "restaurants",
+    "name": "GOTi Family & Kitchen — Зорница",
+    "address": "ж.к. Зорница 78, 8018 Бургас",
+    "latitude": 42.5194868,
+    "longitude": 27.4662001,
+    "website": "https://goti.bg/contacts",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/goti . Справка на 06.10.2026. Няма проверка на място. Допълнителен източник: https://goti.bg/contacts . Графикът е от сайта на заведението; провери за промени преди посещение.",
+    "is_nonstop": null,
+    "hours": [
+      {
+        "weekday": 1,
+        "opens": 480,
+        "closes": 1440
+      },
+      {
+        "weekday": 2,
+        "opens": 480,
+        "closes": 1440
+      },
+      {
+        "weekday": 3,
+        "opens": 480,
+        "closes": 1440
+      },
+      {
+        "weekday": 4,
+        "opens": 480,
+        "closes": 1440
+      },
+      {
+        "weekday": 5,
+        "opens": 480,
+        "closes": 1440
+      },
+      {
+        "weekday": 6,
+        "opens": 480,
+        "closes": 1440
+      },
+      {
+        "weekday": 7,
+        "opens": 480,
+        "closes": 1440
+      }
+    ]
+  },
+  {
+    "id": "7a875f4a-ccc4-5318-a79c-32c4a155a199",
+    "category": "restaurants",
+    "name": "Happy Bar & Grill — Лазур",
+    "address": "ж.к. Лазур, кв. 41, между бл. 5 и бл. 7, Бургас",
+    "latitude": 42.5015246,
+    "longitude": 27.4797656,
+    "website": "https://happy.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/happy-bar-grill . Справка на 06.10.2026. Няма проверка на място. Допълнителен източник: https://happy.bg/restaurants/16/happy-lazur-burgas . Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "102f28b2-5495-5529-8a2d-577aebd6dad4",
+    "category": "restaurants",
+    "name": "KAMYNITE pizza | bar | dinner",
+    "address": "ул. Буревестник 4, кв. Сарафово, Бургас",
+    "latitude": 42.558456,
+    "longitude": 27.5163876,
+    "website": "https://kamynite.bg/bg/about",
+    "notes": "Източник: https://kamynite.bg/bg/about . Справка на 06.10.2026. Няма проверка на място. Допълнителен източник: https://hotelkamynite.com/bg/restaurants . Графикът е от сайта на заведението; провери за промени преди посещение.",
+    "is_nonstop": null,
+    "hours": [
+      {
+        "weekday": 1,
+        "opens": 480,
+        "closes": 1410
+      },
+      {
+        "weekday": 2,
+        "opens": 480,
+        "closes": 1410
+      },
+      {
+        "weekday": 3,
+        "opens": 480,
+        "closes": 1410
+      },
+      {
+        "weekday": 4,
+        "opens": 480,
+        "closes": 1410
+      },
+      {
+        "weekday": 5,
+        "opens": 480,
+        "closes": 1410
+      },
+      {
+        "weekday": 6,
+        "opens": 480,
+        "closes": 1410
+      },
+      {
+        "weekday": 7,
+        "opens": 480,
+        "closes": 1410
+      }
+    ]
+  },
+  {
+    "id": "89473c3b-a1d1-5e01-b696-d5fa190506f4",
+    "category": "restaurants",
+    "name": "La Ferme Steakhouse",
+    "address": "бул. Даме Груев 16, партер вход откъм площада на Central Park, Бургас",
+    "latitude": 42.5110852,
+    "longitude": 27.4578823,
+    "website": "https://triagroup.bg/restoranti/la-ferme-steakhouse/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/la-ferme-steakhouse . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "a21f127e-23c2-58b5-97c4-649eec35bf79",
+    "category": "restaurants",
+    "name": "Manjari",
+    "address": "Burgas Center, ul. \"Kont Androvanti\" 9, 8000 Burgas",
+    "latitude": 42.4926725,
+    "longitude": 27.4715982,
+    "website": "https://manjarikitchen.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/manjari- . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "3acdc909-3a45-5a0f-b2ef-efe020f80b1c",
+    "category": "restaurants",
+    "name": "Medusa",
+    "address": "Лазур, ul. \"Adam Mickiewicz\" 7, 8000 Burgas",
+    "latitude": 42.5006433,
+    "longitude": 27.4798127,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/medusa- . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "5a3cc81b-1b82-56e2-bd28-a129f7368347",
+    "category": "restaurants",
+    "name": "Opera Garden",
+    "address": "ул. Любен Каравелов 36, Бургас",
+    "latitude": 42.4987365,
+    "longitude": 27.4666518,
+    "website": "https://operagarden.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/opera . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "4616681d-1300-5776-a523-a31d51c853fe",
+    "category": "restaurants",
+    "name": "Parallel Lounge Burgas",
+    "address": "гр. Бургас, Приморски парк Обект позиция - E26 H1, Моркса градина Северен паркинг",
+    "latitude": 42.5087833,
+    "longitude": 27.4835584,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/parallel-lounge-burgas . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "552c9a76-e67e-5b97-ad63-468360047aad",
+    "category": "restaurants",
+    "name": "Ponzu Sushi",
+    "address": "Burgas Center, ul. \"Makedonia\" 17, 8000 Burgas, Bulgaria",
+    "latitude": 42.5007353,
+    "longitude": 27.4688233,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/ponzu-sushi . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "70168253-617d-5e16-94ac-20ea3a10c17f",
+    "category": "restaurants",
+    "name": "Sale & Pepe",
+    "address": "Комплекс Перла, блок 5, ж.к. Зорница",
+    "latitude": 42.5130202,
+    "longitude": 27.4689702,
+    "website": "https://saleandpepe.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/sale-pepe . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "4a31e885-8212-589b-ac3d-3275ed86deab",
+    "category": "restaurants",
+    "name": "Ti Bar & Kitchen",
+    "address": "улица Силистра №4",
+    "latitude": 42.4950778,
+    "longitude": 27.4723444,
+    "website": "https://ti-bar.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/ti-bar-kitchen . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "084a8193-fb15-587d-9a8b-6a26845eb987",
+    "category": "restaurants",
+    "name": "TRE",
+    "address": "гр. Бургас, ул. Трайко Китанчев 26",
+    "latitude": 42.4974483,
+    "longitude": 27.4737474,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/tre . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "362a6644-69fa-5c8a-bbdc-a976e580da23",
+    "category": "restaurants",
+    "name": "Бирария Даляна",
+    "address": "8014 Бургас",
+    "latitude": 42.4444398,
+    "longitude": 27.5315919,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/dalyana-brewery . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "927c7efc-8d28-55de-a98b-26247efb7dba",
+    "category": "restaurants",
+    "name": "Бистро \"Алегро\"",
+    "address": "Васил Априлов 14, Бургас",
+    "latitude": 42.4946176,
+    "longitude": 27.4707985,
+    "website": "https://allegroburgas.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-allegro . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "3eee9020-20a5-587b-8c2b-5f0833563453",
+    "category": "restaurants",
+    "name": "Бистро Lazuro",
+    "address": "ж.к. Лазур, ул. Копривщица 15, 8001 Бургас",
+    "latitude": 42.5084863,
+    "longitude": 27.4731173,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-lazuro . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "b301aa1d-14f1-5ce2-893b-4ae0f8d6e5ba",
+    "category": "restaurants",
+    "name": "Бистро Белека",
+    "address": "ж.к. Изгрев, бл. 109, 8008 Бургас",
+    "latitude": 42.524384,
+    "longitude": 27.4650416,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-beleka . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "f6b7462b-de3e-5d53-912d-412c08f78f48",
+    "category": "restaurants",
+    "name": "Бистро Гилзата",
+    "address": "ж.к. Възраждане, ул. Сливница 11-13, 8000 Бургас",
+    "latitude": 42.4960573,
+    "longitude": 27.469087,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-gilzata . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "aab23db9-8fc7-54e2-b0e7-14b53eb9644d",
+    "category": "restaurants",
+    "name": "Бистро Ронер",
+    "address": "Бургас",
+    "latitude": 42.4992481,
+    "longitude": 27.4689963,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-roner . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "f474d513-fc96-5ebb-8de1-f11abeab1cc6",
+    "category": "restaurants",
+    "name": "Бистро Тропикана",
+    "address": "8000 Бургас",
+    "latitude": 42.5036356,
+    "longitude": 27.4835624,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-tropicana . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "90e57e4a-72f4-50f6-a633-4c5e2f835345",
+    "category": "restaurants",
+    "name": "Бистро Уест",
+    "address": "Парк Езеро, 8000 Бургас",
+    "latitude": 42.5110663,
+    "longitude": 27.4797788,
+    "website": "http://www.birariawest.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-west . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "1d498c93-16b0-593b-9608-100557b056c4",
+    "category": "restaurants",
+    "name": "бистро ЧАДЪРА",
+    "address": "Приморски парк - Бургас, до Летен театър",
+    "latitude": 42.4983365,
+    "longitude": 27.4804621,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/bistro-chadar . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "a4718a09-3721-5bd9-aef9-8e64a8677f10",
+    "category": "restaurants",
+    "name": "Ботега",
+    "address": "ж.к. Лазур 77, 8001 Бургас",
+    "latitude": 42.5022747,
+    "longitude": 27.4770392,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/botega . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "79bcf008-0925-561b-8c46-99ea21cf700d",
+    "category": "restaurants",
+    "name": "Вкусно",
+    "address": "ж.к. Изгрев, бл. 133, 8008 Бургас",
+    "latitude": 42.5224161,
+    "longitude": 27.4602323,
+    "website": "https://vkusno-burgas.com/contacts/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/delicious . Справка на 06.10.2026. Няма проверка на място. Допълнителен източник: https://vkusno-burgas.com/contacts/ . Графикът е от сайта на заведението; провери за промени преди посещение.",
+    "is_nonstop": null,
+    "hours": [
+      {
+        "weekday": 2,
+        "opens": 600,
+        "closes": 1110
+      },
+      {
+        "weekday": 3,
+        "opens": 600,
+        "closes": 1110
+      },
+      {
+        "weekday": 4,
+        "opens": 600,
+        "closes": 1110
+      },
+      {
+        "weekday": 5,
+        "opens": 600,
+        "closes": 1110
+      },
+      {
+        "weekday": 6,
+        "opens": 600,
+        "closes": 1110
+      },
+      {
+        "weekday": 7,
+        "opens": 600,
+        "closes": 1080
+      }
+    ]
+  },
+  {
+    "id": "b19ccc37-6973-560f-a483-9ff7d31b2808",
+    "category": "restaurants",
+    "name": "Гирос",
+    "address": "ул. Сливница 2, 8000 Бургас",
+    "latitude": 42.4961723,
+    "longitude": 27.4709104,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/gyros . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "fb743a02-c4e3-56ac-8e71-65a5308ca07f",
+    "category": "restaurants",
+    "name": "Гранд'Италия",
+    "address": "ул. Перущица, 8001 Бургас",
+    "latitude": 42.5100005,
+    "longitude": 27.47268,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/granditalia . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "560980fd-44c6-5262-9b63-a3144a5c6d50",
+    "category": "restaurants",
+    "name": "Грация Пицария",
+    "address": "ул. Въстаническа 22, Меден рудник, 8000 Бургас",
+    "latitude": 42.4575638,
+    "longitude": 27.4066772,
+    "website": "http://gracia-restaurant.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/gratsiya-pizzaria . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "930273ef-c6e4-5ef8-bb9a-a1fd0eb3c1c2",
+    "category": "restaurants",
+    "name": "Грог",
+    "address": "ж.к. Славейков 135, 8005 Бургас",
+    "latitude": 42.5161836,
+    "longitude": 27.4571502,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/grog . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "1733c717-d30a-53cd-8cd6-0ea8b29cdaa9",
+    "category": "restaurants",
+    "name": "Гролш",
+    "address": "ул. 24-ти Пехотен Черноморски полк 12, Приморски парк, 8000 Бургас",
+    "latitude": 42.503873,
+    "longitude": 27.4814758,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/grolsh . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "c272eb88-9356-563a-ba4a-10d7f14b5696",
+    "category": "restaurants",
+    "name": "Даляна",
+    "address": "Пристанищен комплекс, 8000 Бургас",
+    "latitude": 42.4879766,
+    "longitude": 27.4809708,
+    "website": "https://dalianaburgas.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/dalyana . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "eb3dab5c-6fa2-5ab2-a119-fab8c0992d72",
+    "category": "restaurants",
+    "name": "ДАС Марина Бургас",
+    "address": "Морска гара Бургас",
+    "latitude": 42.4848411,
+    "longitude": 27.482603,
+    "website": "https://marinaburgas.bg/bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/das-marina-burgas . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "e410d319-e0ae-5662-9f1c-8388a4add830",
+    "category": "restaurants",
+    "name": "Джоли Роджър",
+    "address": "Морска гара Бургас, Пристанищен комплекс, 8000 Бургас",
+    "latitude": 42.4837095,
+    "longitude": 27.4825989,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/jolly-roger . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "2478f898-aae4-5161-999f-48c0e8fb2136",
+    "category": "restaurants",
+    "name": "Джърси",
+    "address": "ж.к. Братя Миладинови, ул. Вардар 27, 8000 Бургас",
+    "latitude": 42.5043627,
+    "longitude": 27.469331,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/jersy . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "19b92f23-b460-5137-a112-8e12c983c9fe",
+    "category": "restaurants",
+    "name": "Диверсо",
+    "address": "ул. „Съединение“ №7",
+    "latitude": 42.4950715,
+    "longitude": 27.4768331,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/diverso-restaurant-bar . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "f1b74424-d756-5e1a-b173-4bebaf57501b",
+    "category": "restaurants",
+    "name": "Док 5",
+    "address": "Пристанищен комплекс, МАРИНА, 8000",
+    "latitude": 42.4889072,
+    "longitude": 27.4794567,
+    "website": "https://restaurant.dock5.bg/bg",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/dock-5 . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "84d94d5b-a7f0-5f43-9310-2b7c03eb7742",
+    "category": "restaurants",
+    "name": "Домашна кухня Детелина",
+    "address": "Център, ул. Марагидик 16, 8000 Бургас",
+    "latitude": 42.4951858,
+    "longitude": 27.4708329,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/detelina-home-kitchen . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "deb71e39-87c6-5a25-9533-70cdba99960d",
+    "category": "restaurants",
+    "name": "Етно ресторант",
+    "address": "ул. Михаил Лермонтов 7, Център, 8000 Бургас",
+    "latitude": 42.4941347,
+    "longitude": 27.4723766,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/ethno-restaurant . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "d98f2908-d766-5429-a5a4-5658725984e4",
+    "category": "restaurants",
+    "name": "Замъка",
+    "address": "ж.к. Изгрев 701, 8008 Бургас",
+    "latitude": 42.5245851,
+    "longitude": 27.459428,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/the-castle . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "d874862e-302e-5e1e-a99c-e4233ffed42e",
+    "category": "restaurants",
+    "name": "Златна Рибка",
+    "address": "ул. \"Цар Симеон I\" 3, 8000 Бургас",
+    "latitude": 42.492861,
+    "longitude": 27.4802363,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/golden-fish . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "51b1cc94-2b6f-5fc2-86da-72e5325c6729",
+    "category": "restaurants",
+    "name": "Инканто",
+    "address": "пл. Баба Ганка 4, 8000 Бургас",
+    "latitude": 42.497804,
+    "longitude": 27.4728414,
+    "website": "https://incanto.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/incanto . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "3aa97cda-e750-506c-be32-c2acdfcf00c7",
+    "category": "restaurants",
+    "name": "Искендер Кебаб",
+    "address": "кв. Здраве, 8000 Бургас",
+    "latitude": 42.526236,
+    "longitude": 27.4468195,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/iskender-kebab . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "c4b3682a-994d-565c-b9a4-ce7af2d126de",
+    "category": "restaurants",
+    "name": "Кардамон",
+    "address": "Център, бул. Алеко Богориди 27, 8000 Бургас",
+    "latitude": 42.4938122,
+    "longitude": 27.4764254,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/cardamon . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "a76fa8c0-cb65-5def-a1a6-c7b4d90f6ef2",
+    "category": "restaurants",
+    "name": "Кинг Конг Бургер",
+    "address": "Център, ул. \"Силистра\" 1, 8001",
+    "latitude": 42.4949737,
+    "longitude": 27.4724737,
+    "website": "http://kingkongburger.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/king-kong-burger . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "a6c335d1-eef3-598d-816b-4195bacb9c0b",
+    "category": "restaurants",
+    "name": "Китайска Луна",
+    "address": "ул. \"Константин Фотинов\" 27, 8000 Бургас",
+    "latitude": 42.4940806,
+    "longitude": 27.4751123,
+    "website": "https://menu.tabl.bg/chinese-moon",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/chinese-moon . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "f70a0c48-aa18-505e-b017-b93a2ac8980e",
+    "category": "restaurants",
+    "name": "Китайска храна Тройката",
+    "address": "Център, ул. Сливница 2, 8000 Бургас",
+    "latitude": 42.4961899,
+    "longitude": 27.47099,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/chinese-food-troykata . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "6057c2a5-b12c-573d-8cf1-c7014a6dec89",
+    "category": "restaurants",
+    "name": "Криго",
+    "address": "ж.к. Меден рудник 248, 8011 Меден Рудник",
+    "latitude": 42.4621287,
+    "longitude": 27.4146244,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/krigo . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "46eab348-45e1-53e4-a766-5b0c0ecee700",
+    "category": "restaurants",
+    "name": "Ла Флор Бар & Грил",
+    "address": "ж.к. Лазур, ул. Велико Търново 11, 8001 Бургас",
+    "latitude": 42.503726,
+    "longitude": 27.4801671,
+    "website": "https://laflor.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/la-flor-bar-grill . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "90bcb3a1-62d2-5d49-aaf7-07910600ed35",
+    "category": "restaurants",
+    "name": "Лично",
+    "address": "ул. Булаир 27, Бургас",
+    "latitude": 42.4920264,
+    "longitude": 27.4789338,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/lichno . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "fc4df785-5504-53ff-8716-9f93e64f2166",
+    "category": "restaurants",
+    "name": "Мамалига",
+    "address": "ж.к. Зорница, бл. 163, 8008 Бургас",
+    "latitude": 42.5157972,
+    "longitude": 27.4677923,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/mamaliga . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "b748fc03-7816-5400-9e93-1b7cf73c53b4",
+    "category": "restaurants",
+    "name": "Маркето",
+    "address": "бул.Демокрация, бл.117,",
+    "latitude": 42.5057112,
+    "longitude": 27.4719746,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/pjNmA4bftbxrtyUn1wQK . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "89895b79-4774-5160-869e-0b83ee42ec88",
+    "category": "restaurants",
+    "name": "Мейзънс Стрийт",
+    "address": "ж.к. Славейков бл. 60, 8005 Бургас",
+    "latitude": 42.512746,
+    "longitude": 27.4584201,
+    "website": "https://maisonstrust.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/maisons-street . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "1c56626f-ac3c-5fba-946f-d26124c14248",
+    "category": "restaurants",
+    "name": "Механа Балканска среща",
+    "address": "ж.к. Петко Р. Славейков, бл. 72, 8010 Бургас",
+    "latitude": 42.5168978,
+    "longitude": 27.4505228,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/tavern-balkan-meeting . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "7d6617c9-035b-5bf1-b8b2-1f422ebe49a0",
+    "category": "restaurants",
+    "name": "Морски сговор",
+    "address": "рибарско селище Клуб-Морски сговор, 8014 Бургас",
+    "latitude": 42.4351924,
+    "longitude": 27.5282495,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/sea-conspiracy . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "9253c44e-d2fe-56b4-80d3-5943b6d40452",
+    "category": "restaurants",
+    "name": "Нори",
+    "address": "бул. Алеко Богориди 38, Център, 8000 Бургас",
+    "latitude": 42.4939009,
+    "longitude": 27.4763989,
+    "website": "http://norisushi.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/nori . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "3967f373-8c69-5b50-a523-bd12b8c404bf",
+    "category": "restaurants",
+    "name": "Ореха",
+    "address": "Алеко Богориди 51, 8000",
+    "latitude": 42.494056,
+    "longitude": 27.4792166,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/oreha . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "2fd123f8-444c-5519-8b50-6a1cdc983213",
+    "category": "restaurants",
+    "name": "Пиаца Гранде",
+    "address": "ул. \"Морска\" 12А, 8000 Бургас",
+    "latitude": 42.4927767,
+    "longitude": 27.4789288,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/piazza-grande . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "f13c5120-76f9-5b99-b045-3b3e30c91d14",
+    "category": "restaurants",
+    "name": "Пица Шоп",
+    "address": "ул. Сливница 4, 8000 Бургас",
+    "latitude": 42.4961195,
+    "longitude": 27.470629,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/pizza-shop . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "430298ec-d0af-5b09-9b3e-650ca1a2f372",
+    "category": "restaurants",
+    "name": "Пицария Monte Pizza",
+    "address": "Гр. Бургас ж.к. Възраждане ул. Ивайло 24",
+    "latitude": 42.4930112,
+    "longitude": 27.465541,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/pizzeria-monte-pizza . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "a96fc691-605f-5af4-ae8e-595e5b13deb0",
+    "category": "restaurants",
+    "name": "При музея",
+    "address": "ул. Антим I 28, 8000 Бургас",
+    "latitude": 42.4934042,
+    "longitude": 27.4758811,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/at-the-museum . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "2ff75058-4973-5381-8481-d42789c8b4e3",
+    "category": "restaurants",
+    "name": "Реверанс",
+    "address": "ж.к. Изгрев, бл. 144, 8008 Бургас",
+    "latitude": 42.5266264,
+    "longitude": 27.4625687,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/reverence . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "2da87612-695d-5d63-8545-ba263f3f9608",
+    "category": "restaurants",
+    "name": "Ресторант 8 Mama's",
+    "address": "ул. Булаир 35",
+    "latitude": 42.49255,
+    "longitude": 27.47961,
+    "website": "https://8mamas.menu/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/restaurant-8-mamas . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "e7dfc229-eb4d-53ea-a39a-c87cb4cbcb90",
+    "category": "restaurants",
+    "name": "Ресторант Авеню Делукс",
+    "address": "Северна промишлена зона, бул. Транспортна 53, 8000 Бургас",
+    "latitude": 42.5288557,
+    "longitude": 27.4536258,
+    "website": "http://www.avenuedeluxe.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/restaurant-avenue-deluxe . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "e7eaee75-cc76-54b7-bf0a-2cc6ad6a6078",
+    "category": "restaurants",
+    "name": "Ресторант България - A La Carte Mezzanine",
+    "address": "Бургас, ул. Александровска 21, Бизнес хотел България",
+    "latitude": 42.492762,
+    "longitude": 27.473332,
+    "website": "https://www.bulgaria-hotel.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/restaurant-bulgaria-a-la-carte-mezzanine . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "3615579e-334b-5040-99b3-b0aa7bf9a344",
+    "category": "restaurants",
+    "name": "Ресторант Капана",
+    "address": "8000 Бургас",
+    "latitude": 42.5084744,
+    "longitude": 27.4838561,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/kapana-restaurant . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "ef15ee98-9cc7-5e3b-a602-43a8c59bc499",
+    "category": "restaurants",
+    "name": "Ресторант Нептун",
+    "address": "Централен плаж, Приморски парк, Бургас",
+    "latitude": 42.49214,
+    "longitude": 27.481509,
+    "website": "https://www.neptunburgas.com/en/restaurant",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/neptune-restaurant . Справка на 06.10.2026. Няма проверка на място. Допълнителен източник: https://www.neptunburgas.com/en/contacts . Графикът е от сайта на заведението; провери за промени преди посещение.",
+    "is_nonstop": null,
+    "hours": [
+      {
+        "weekday": 1,
+        "opens": 660,
+        "closes": 1410
+      },
+      {
+        "weekday": 2,
+        "opens": 660,
+        "closes": 1410
+      },
+      {
+        "weekday": 3,
+        "opens": 660,
+        "closes": 1410
+      },
+      {
+        "weekday": 4,
+        "opens": 660,
+        "closes": 1410
+      },
+      {
+        "weekday": 5,
+        "opens": 660,
+        "closes": 1410
+      },
+      {
+        "weekday": 6,
+        "opens": 660,
+        "closes": 1410
+      },
+      {
+        "weekday": 7,
+        "opens": 660,
+        "closes": 1410
+      }
+    ]
+  },
+  {
+    "id": "2a4a9f89-bb1f-50d7-82ef-5cfd169a3abd",
+    "category": "restaurants",
+    "name": "Романс пица",
+    "address": "парк Славейков, 8000 Бургас",
+    "latitude": 42.5176114,
+    "longitude": 27.4561978,
+    "website": "https://www.pizza-romance.com",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/romance-pizza . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "a6a26eeb-22f4-5edf-9cd7-42f8d5482283",
+    "category": "restaurants",
+    "name": "Сезам",
+    "address": "Северна индустриална зона, бул. Стефан Стамболов, 8001 Бургас",
+    "latitude": 42.5033194,
+    "longitude": 27.4697998,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/sezam . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "fa23e0ed-b000-5443-b0dd-b259d2683848",
+    "category": "restaurants",
+    "name": "Теньова къща",
+    "address": "ж.к. Петко Р. Славейков, 8005",
+    "latitude": 42.5179201,
+    "longitude": 27.4556663,
+    "website": "https://tenyovakashta.com/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/tavern-tenyos-house . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "ce64d1a5-47e8-5180-84c6-c667df5b0095",
+    "category": "restaurants",
+    "name": "Чайнатаун",
+    "address": "ж.к. Изгрев 160, 8008 Бургас",
+    "latitude": 42.5224847,
+    "longitude": 27.4609546,
+    "website": "http://www.chinatown.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/chinatown . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "5e3c1d30-21a5-544d-bc62-2c7796cf02d6",
+    "category": "restaurants",
+    "name": "Черно и бяло",
+    "address": "ж.к. Лазур, 8001 Бургас",
+    "latitude": 42.505374,
+    "longitude": 27.4754149,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/black-and-white . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "e989b6f0-7fb5-592a-9512-81d7c9d25d4d",
+    "category": "restaurants",
+    "name": "Юнашка мръвка",
+    "address": "бул. Транспортна 35, Северна промишлена зона, 8008 Бургас",
+    "latitude": 42.5293219,
+    "longitude": 27.4566022,
+    "website": null,
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/heros-crumb . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  },
+  {
+    "id": "0d063b59-ca36-50bd-8122-57783a2f6caa",
+    "category": "restaurants",
+    "name": "Явка Фуд Бар",
+    "address": "ул. \"Цар Симеон I\" 83, 8000 Бургас",
+    "latitude": 42.4989763,
+    "longitude": 27.4739184,
+    "website": "https://yavka.bg/",
+    "notes": "Източник: https://info.gotoburgas.com/bg/plan/food_drink/yavka-food-bar . Справка на 06.10.2026. Няма проверка на място. Работното време не е потвърдено.",
+    "is_nonstop": null,
+    "hours": null
+  }
+]
+$restaurant_data$::jsonb) as r(
+  id uuid, category text, name text, address text, latitude double precision,
+  longitude double precision, website text, notes text, is_nonstop boolean, hours jsonb
+);
+
+-- Hold concurrent inserts until this short import completes, including the duplicate check.
+lock table public.city_places in share row exclusive mode;
+insert into public.city_places
+  (id, created_by, category, name, address, latitude, longitude, website, notes, is_nonstop, hours)
+select s.id, o.id, s.category, s.name, s.address, s.latitude, s.longitude,
+       s.website, s.notes, s.is_nonstop, nullif(s.hours, 'null'::jsonb)
+from restaurant_import_seed s cross join restaurant_import_owner o
+where not exists (
+  select 1 from public.city_places p
+  where p.id = s.id or (
+    p.category = 'restaurants'
+    and regexp_replace(lower(p.name), '[[:space:][:punct:]]+', '', 'g')
+        = regexp_replace(lower(s.name), '[[:space:][:punct:]]+', '', 'g')
+    and abs(p.latitude - s.latitude) < 0.0004
+    and abs(p.longitude - s.longitude) < 0.0005
+  )
+)
+on conflict (id) do nothing;
+
+notify pgrst, 'reload schema';
+commit;
+
+-- This count includes any restaurant records you already had.
+select count(*) as restaurants_in_app from public.city_places where category = 'restaurants';

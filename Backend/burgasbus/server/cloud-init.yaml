@@ -1,0 +1,73 @@
+#cloud-config
+{
+  "package_update": true,
+  "packages": [
+    "python3",
+    "python3-venv",
+    "ca-certificates",
+    "curl"
+  ],
+  "ssh_pwauth": false,
+  "disable_root": true,
+  "users": [
+    "default",
+    {
+      "name": "burgasbus",
+      "system": true,
+      "lock_passwd": true,
+      "shell": "/usr/sbin/nologin",
+      "no_create_home": true
+    }
+  ],
+  "write_files": [
+    {
+      "path": "/opt/burgasbus/import_feed.py",
+      "owner": "root:root",
+      "permissions": "0644",
+      "content": "\"\"\"Server-side adapter for authorized GTFS + GTFS-Realtime VehiclePositions.\n\nNo guessed feed URLs or sample vehicles. Do not put service credentials in the app.\nRun --help; read ../CATEGORY-PLACES-AND-TRANSIT.md before enabling publication.\n\"\"\"\nimport argparse\nimport csv\nimport io\nimport json\nimport math\nimport os\nimport time\nimport urllib.error\nimport urllib.parse\nimport urllib.request\nimport zipfile\nfrom pathlib import Path\n\nMAX_BYTES = 32 * 1024 * 1024\n\n\ndef coordinates(lat, lon):\n    lat, lon = float(lat), float(lon)\n    if not (math.isfinite(lat) and math.isfinite(lon) and -90 <= lat <= 90 and -180 <= lon <= 180):\n        raise ValueError(\"Invalid coordinates\")\n    return lat, lon\n\n\ndef read_schedule(data):\n    \"\"\"Read without extracting files; reject invalid/duplicate stops before replacing any.\"\"\"\n    with zipfile.ZipFile(io.BytesIO(data)) as archive:\n        def rows(filename, required=False):\n            matches = [n for n in archive.namelist() if n.rsplit('/', 1)[-1] == filename]\n            if not matches and not required:\n                return []\n            if len(matches) != 1:\n                raise ValueError(\"Expected exactly one \" + filename)\n            info = archive.getinfo(matches[0])\n            if info.file_size > MAX_BYTES:\n                raise ValueError(\"GTFS file exceeds size limit\")\n            return list(csv.DictReader(io.StringIO(archive.read(info).decode('utf-8-sig'))))\n\n        stops, ids = [], set()\n        for row in rows('stops.txt', required=True):\n            # GTFS location_type=0 (or blank) represents a stop/platform.\n            if row.get('location_type', '') not in ('', '0'):\n                continue\n            lat, lon = coordinates(row['stop_lat'], row['stop_lon'])\n            identifier, name = row['stop_id'].strip(), row['stop_name'].strip()\n            if not identifier or len(identifier) > 200 or not name or len(name) > 500 or identifier in ids:\n                raise ValueError(\"Invalid or duplicate stop\")\n            ids.add(identifier)\n            stops.append(dict(id=identifier, name=name, stop_code=row.get('stop_code') or None,\n                              latitude=lat, longitude=lon))\n        if not stops or len(stops) > 20000:\n            raise ValueError(\"Expected 1–20000 stops\")\n        routes = {r['route_id']: r.get('route_short_name') or r.get('route_long_name') or '' for r in rows('routes.txt')}\n        trips = {r['trip_id']: (r['route_id'], r.get('trip_headsign', '')) for r in rows('trips.txt')}\n        return stops, routes, trips\n\n\ndef normalize_vehicles(feed, routes, trips, now):\n    if not feed.HasField('header') or feed.header.incrementality != 0:\n        raise ValueError(\"Only FULL_DATASET feeds are supported\")\n    vehicles, ids = [], set()\n    for entity in feed.entity:\n        if entity.is_deleted or not entity.HasField('vehicle'):\n            continue\n        vehicle = entity.vehicle\n        # Header timestamp is not a substitute for the actual GPS measurement timestamp.\n        if not vehicle.HasField('timestamp') or not vehicle.HasField('position'):\n            continue\n        age = now - vehicle.timestamp\n        if age < -30 or age > 120:\n            continue\n        pos = vehicle.position\n        if not pos.HasField('latitude') or not pos.HasField('longitude'):\n            continue\n        try:\n            lat, lon = coordinates(pos.latitude, pos.longitude)\n        except ValueError:\n            continue\n        identifier = vehicle.vehicle.id or entity.id\n        if not identifier or identifier in ids:\n            continue\n        ids.add(identifier)\n        trip_route, headsign = trips.get(vehicle.trip.trip_id, ('', ''))\n        route_id = vehicle.trip.route_id or trip_route\n        bearing = float(pos.bearing) if pos.HasField('bearing') and math.isfinite(pos.bearing) and 0 <= pos.bearing < 360 else None\n        vehicles.append(dict(id=identifier, route=routes.get(route_id, ''), label=headsign or vehicle.vehicle.label,\n                             latitude=lat, longitude=lon, bearing=bearing, observed_at=int(vehicle.timestamp)))\n    return dict(vehicles=vehicles, fetched_at=now)\n\n\ndef decode_live(data, routes, trips, now):\n    from google.transit import gtfs_realtime_pb2\n    feed = gtfs_realtime_pb2.FeedMessage()\n    feed.ParseFromString(data)\n    if not feed.IsInitialized():\n        raise ValueError(\"Incomplete GTFS-Realtime message\")\n    return normalize_vehicles(feed, routes, trips, now)\n\n\ndef https_url(value):\n    parsed = urllib.parse.urlsplit(value)\n    if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password or parsed.fragment:\n        raise ValueError(\"Expected an HTTPS URL without embedded credentials\")\n    return value\n\n\nclass NoRedirect(urllib.request.HTTPRedirectHandler):\n    # Do not forward provider/service headers to another host on a redirect.\n    def redirect_request(self, req, fp, code, msg, headers, newurl):\n        raise ValueError(\"Redirect refused; configure the final authorized HTTPS endpoint\")\n\n\ndef request(url, headers=None, body=None):\n    payload = None if body is None else json.dumps(body, allow_nan=False).encode()\n    req = urllib.request.Request(https_url(url), data=payload, headers=headers or {})\n    with urllib.request.build_opener(NoRedirect).open(req, timeout=20) as response:\n        data = response.read(MAX_BYTES + 1)\n        if len(data) > MAX_BYTES:\n            raise ValueError(\"Response exceeds size limit\")\n        return data\n\n\ndef source(env_name):\n    # Provider-specific access headers are configured only on the server after approval.\n    headers = json.loads(os.environ.get('BURGASBUS_HEADERS_JSON', '{}'))\n    return request(os.environ[env_name], headers=headers)\n\n\ndef publish(path, value, prefer=None):\n    base = https_url(os.environ['SUPABASE_URL'].rstrip('/'))\n    key = os.environ['SUPABASE_SERVICE_ROLE_KEY']\n    headers = {'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}\n    if prefer:\n        headers['Prefer'] = prefer\n    request(base + '/rest/v1/' + path, headers=headers, body=value)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--schedule-file', type=Path, help='An authorized GTFS zip; otherwise use BURGASBUS_GTFS_URL')\n    parser.add_argument('--live-file', type=Path, help='An authorized VehiclePositions protobuf; otherwise use BURGASBUS_VEHICLES_URL')\n    parser.add_argument('--publish', action='store_true', help='Write to Supabase using SERVER credentials')\n    parser.add_argument('--watch', action='store_true', help='Poll positions every 20 seconds; refresh GTFS daily (respect provider limits)')\n    args = parser.parse_args()\n    if args.watch and (args.live_file or args.schedule_file):\n        parser.error('--watch requires live endpoints, not fixtures/files')\n    refreshed = 0\n    routes, trips = {}, {}\n    while True:\n        try:\n            now = time.time()\n            if now - refreshed >= 86400:\n                schedule = args.schedule_file.read_bytes() if args.schedule_file else source('BURGASBUS_GTFS_URL')\n                stops, routes, trips = read_schedule(schedule)\n                if args.publish:\n                    publish('rpc/replace_burgasbus_stops', {'p_stops': stops})\n                refreshed = now\n                print(f'Validated {len(stops)} official stop records.', flush=True)\n            data = args.live_file.read_bytes() if args.live_file else source('BURGASBUS_VEHICLES_URL')\n            snapshot = decode_live(data, routes, trips, time.time())\n            if args.publish:\n                publish('burgasbus_live?on_conflict=id', {'id': 1, 'payload': snapshot}, 'resolution=merge-duplicates')\n            print(f'Validated {len(snapshot[\"vehicles\"])} fresh vehicle positions.', flush=True)\n        except Exception as error:\n            # Exceptions from remote servers can contain URLs/tokens: do not print their text.\n            print(f'Import failed ({type(error).__name__}); existing GPS positions expire automatically.', flush=True)\n            if not args.watch:\n                raise SystemExit(1)\n        if not args.watch:\n            return\n        time.sleep(20)\n\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    {
+      "path": "/opt/burgasbus/requirements.txt",
+      "owner": "root:root",
+      "permissions": "0644",
+      "content": "# Official GTFS-Realtime Python bindings; install only on the importer server.\ngtfs-realtime-bindings>=1.0.0,<2\n"
+    },
+    {
+      "path": "/opt/burgasbus/check_configuration.py",
+      "owner": "root:root",
+      "permissions": "0644",
+      "content": "\"\"\"Fail before polling when required server-only settings are missing. Never print values.\"\"\"\nimport json\nimport os\nimport sys\nfrom urllib.parse import urlsplit\n\n\ndef validate(env):\n    for key in ('BURGASBUS_GTFS_URL', 'BURGASBUS_VEHICLES_URL', 'SUPABASE_URL'):\n        value = env.get(key, '')\n        parsed = urlsplit(value)\n        if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password or parsed.fragment:\n            raise ValueError('Missing or invalid ' + key)\n    base = urlsplit(env['SUPABASE_URL'])\n    if base.path not in ('', '/') or base.query:\n        raise ValueError('SUPABASE_URL must be a project origin')\n    service_key = env.get('SUPABASE_SERVICE_ROLE_KEY', '')\n    if not service_key or service_key.startswith('sb_publishable_'):\n        raise ValueError('Set a server service credential, not the mobile publishable key')\n    headers = json.loads(env.get('BURGASBUS_HEADERS_JSON', '{}'))\n    if not isinstance(headers, dict) or any(not isinstance(k, str) or not isinstance(v, str) or '\\n' in k + v or '\\r' in k + v for k, v in headers.items()):\n        raise ValueError('BURGASBUS_HEADERS_JSON must contain string header names and values')\n\n\nif __name__ == '__main__':\n    try:\n        validate(os.environ)\n    except Exception:\n        print('Server configuration is incomplete or invalid. Review the private feeds.env file.', file=sys.stderr)\n        raise SystemExit(1)\n    print('Server configuration validated.')\n"
+    },
+    {
+      "path": "/opt/burgasbus/feeds.env.example",
+      "owner": "root:root",
+      "permissions": "0600",
+      "content": "# Fill these privately ON THE SERVER after Burgasbus approves access.\n# Keep /etc/burgasbus/feeds.env owned by root with permissions 0600.\n# Never place credentials in cloud-init user data, the app, a screenshot or chat.\nBURGASBUS_GTFS_URL=\nBURGASBUS_VEHICLES_URL=\nBURGASBUS_HEADERS_JSON={}\nSUPABASE_URL=https://shodinaimhixnudqqgck.supabase.co\nSUPABASE_SERVICE_ROLE_KEY=\n"
+    },
+    {
+      "path": "/etc/systemd/system/burgasbus-importer.service",
+      "owner": "root:root",
+      "permissions": "0644",
+      "content": "[Unit]\nDescription=Eurovision Burgas official bus data importer\nAfter=network-online.target\nWants=network-online.target\nConditionPathExists=/etc/burgasbus/feeds.env\n\n[Service]\nType=simple\nUser=burgasbus\nGroup=burgasbus\nWorkingDirectory=/opt/burgasbus\nEnvironmentFile=/etc/burgasbus/feeds.env\nEnvironment=PYTHONUNBUFFERED=1\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStartPre=/opt/burgasbus/venv/bin/python /opt/burgasbus/check_configuration.py\nExecStart=/opt/burgasbus/venv/bin/python /opt/burgasbus/import_feed.py --publish --watch\nRestart=on-failure\nRestartSec=60\nNoNewPrivileges=true\nPrivateTmp=true\nProtectSystem=strict\nProtectHome=true\nProtectKernelTunables=true\nProtectKernelModules=true\nProtectControlGroups=true\nRestrictSUIDSGID=true\nLockPersonality=true\nCapabilityBoundingSet=\n# Use only IPv4 for external requests, so the reserved IPv4 is the allowlisted source.\nRestrictAddressFamilies=AF_UNIX AF_INET\nUMask=0077\nStandardOutput=journal\nStandardError=journal\nSyslogIdentifier=burgasbus\n\n[Install]\nWantedBy=multi-user.target\n"
+    },
+    {
+      "path": "/opt/burgasbus/install.sh",
+      "owner": "root:root",
+      "permissions": "0700",
+      "content": "#!/bin/sh\n# Runs only on a NEW dedicated Ubuntu server through cloud-init.\nset -eu\npython3 -m venv /opt/burgasbus/venv\n/opt/burgasbus/venv/bin/python -m pip install --disable-pip-version-check -r /opt/burgasbus/requirements.txt\ninstall -d -m 0700 -o root -g root /etc/burgasbus\nsystemctl daemon-reload\n# Deliberately not started: provider approval and private feed settings are still pending.\nsystemctl disable burgasbus-importer.service\nprintf '%s\\n' 'Server files installed. The feed importer is inactive until access is approved.'\n"
+    },
+    {
+      "path": "/opt/burgasbus/verify-ip.sh",
+      "owner": "root:root",
+      "permissions": "0755",
+      "content": "#!/bin/sh\n# Run ON THE SERVER after attaching its reserved public IPv4.\n# No credentials or app data are sent to these public IP-check endpoints.\nset -eu\nfirst=$(curl --noproxy '*' -4 --fail --silent --show-error --max-time 15 https://checkip.amazonaws.com)\nsecond=$(curl --noproxy '*' -4 --fail --silent --show-error --max-time 15 https://api.ipify.org)\npython3 - \"$first\" \"$second\" <<'PY'\nimport ipaddress\nimport sys\nfirst, second = (ipaddress.ip_address(value.strip()) for value in sys.argv[1:])\nif first.version != 4 or not first.is_global or first != second:\n    raise SystemExit('The outgoing public IPv4 could not be verified consistently.')\nprint('Observed outgoing public IPv4:', first)\nprint('Compare this with the RESERVED public IPv4 attached in the cloud console.')\nprint('Use it in the Burgasbus form only if they match. These checks alone do not reserve an IP.')\nPY\n"
+    }
+  ],
+  "runcmd": [
+    [
+      "/bin/sh",
+      "/opt/burgasbus/install.sh"
+    ]
+  ],
+  "final_message": "Burgasbus server setup finished. Review cloud-init logs. Importer is inactive pending provider approval."
+}

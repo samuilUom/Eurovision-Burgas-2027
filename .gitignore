@@ -1,0 +1,40 @@
+.DS_Store
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+
+# Local builds, caches and generated exports
+.build/
+.swiftpm/
+*.xcarchive
+*.ipa
+*.dSYM/
+*.dSYM.zip
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+
+# Local credentials and signing material
+.env
+.env.*
+*.env
+!.env.example
+!*.env.example
+*.p12
+*.p8
+*.pem
+*.key
+*.mobileprovision
+
+# Local application data
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+
+# Deployment settings remain on this Mac
+GoogleReviewsWidget/dist/config.json
+GoogleReviewsWidget/.openai/

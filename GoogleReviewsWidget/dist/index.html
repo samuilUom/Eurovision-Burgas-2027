@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="color-scheme" content="light dark">
+  <title>Google ревюта · Eurovision Burgas 2027</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">EUROVISION BURGAS 2027</p>
+      <h1 id="restaurant-name">Google ревюта</h1>
+      <p id="restaurant-address"></p>
+      <p class="source">Мнения от Google Maps</p>
+    </header>
+    <div id="status" role="status" aria-live="polite">Подготвяме ревютата…</div>
+    <form id="search-form" hidden>
+      <label for="query">Намери заведението в Google</label>
+      <div class="search-row"><input id="query" type="search" maxlength="700" autocomplete="off" required><button type="submit">Търси</button></div>
+      <p class="hint">Избери същото заведение и провери адреса. Изборът се запомня на този телефон.</p>
+    </form>
+    <div class="actions"><button id="retry" type="button" hidden>Опитай пак</button><button id="change" type="button" hidden>Друго съвпадение</button></div>
+    <section id="content" aria-label="Google Maps"></section>
+    <footer>Ревютата от Google се показват отделно от оценките в приложението. <a href="./privacy.html">Поверителност</a> · <a href="./terms.html">Условия</a></footer>
+    <noscript>За показване на ревютата е необходим JavaScript.</noscript>
+  </main>
+</body>
+</html>

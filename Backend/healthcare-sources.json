@@ -1,0 +1,57 @@
+{
+  "coordinate_attribution": "© OpenStreetMap contributors",
+  "coordinate_licence": "ODbL 1.0",
+  "licence_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "places": [
+    {
+      "id": "umbal-burgas",
+      "name": "УМБАЛ Бургас",
+      "latitude": 42.5135674,
+      "longitude": 27.4659001,
+      "coordinate_source": "https://www.openstreetmap.org/way/40820723",
+      "information_source": "https://www.mbalburgas.com/",
+      "published_hours": null,
+      "checked_at": "2026-10-14"
+    },
+    {
+      "id": "burgasmed",
+      "name": "МБАЛ Бургасмед",
+      "latitude": 42.4633517,
+      "longitude": 27.420723,
+      "coordinate_source": "https://www.openstreetmap.org/way/552183246",
+      "information_source": "https://www.hospitalburgasmed.bg/contacts.block1.php",
+      "published_hours": null,
+      "checked_at": "2026-10-14"
+    },
+    {
+      "id": "heart-brain-burgas",
+      "name": "Сърце и Мозък — Бургас",
+      "latitude": 42.5276865,
+      "longitude": 27.445044,
+      "coordinate_source": "https://www.openstreetmap.org/way/1011270393",
+      "information_source": "https://cardiacinstitute.bg/en/hospitals-and-centers/heart-and-brain-center-of-excellence-burgas/contacts/",
+      "published_hours": null,
+      "checked_at": "2026-10-14"
+    },
+    {
+      "id": "puls-slaveykov",
+      "name": "Аптека Пулс 2",
+      "latitude": 42.5200065,
+      "longitude": 27.4513466,
+      "coordinate_source": "https://www.openstreetmap.org/node/5203059021",
+      "information_source": "https://www.pulsapteka.com/kontakti",
+      "published_hours": "Mo-Su 00:00-24:00",
+      "checked_at": "2026-10-14"
+    },
+    {
+      "id": "sopharmacy-pirgos",
+      "name": "SOpharmacy — Pirgos Park",
+      "latitude": 42.5120086,
+      "longitude": 27.4557593,
+      "coordinate_source": "https://www.openstreetmap.org/node/13478878915",
+      "information_source": "https://pirgospark.bg/obekti/sopharmacy/",
+      "published_hours": "Mo-Su 09:00-20:00",
+      "checked_at": "2026-10-14"
+    }
+  ]
+}

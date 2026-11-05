@@ -1,0 +1,73 @@
+[
+  {
+    "type": "node",
+    "id": "3287240667",
+    "tags": {
+      "amenity": "toilets",
+      "check_date": "2025-11-22"
+    },
+    "lat": 42.4965566,
+    "lon": 27.4718872,
+    "sourceURL": "https://www.openstreetmap.org/node/3287240667"
+  },
+  {
+    "type": "way",
+    "id": "330453563",
+    "tags": {
+      "amenity": "toilets",
+      "building": "yes",
+      "charge": "1 BGN",
+      "check_date": "2023-09-25",
+      "fee": "yes",
+      "opening_hours": "Mo-Su 08:30-20:00",
+      "wheelchair": "yes"
+    },
+    "lat": 42.4908858,
+    "lon": 27.474549859999996,
+    "sourceURL": "https://www.openstreetmap.org/way/330453563"
+  },
+  {
+    "type": "node",
+    "id": "3287240668",
+    "tags": {
+      "amenity": "toilets",
+      "check_date": "2021-09-07",
+      "fee": "yes",
+      "wheelchair": "yes"
+    },
+    "lat": 42.4994874,
+    "lon": 27.4806312,
+    "sourceURL": "https://www.openstreetmap.org/node/3287240668"
+  },
+  {
+    "type": "way",
+    "id": "985556845",
+    "tags": {
+      "amenity": "toilets",
+      "building": "yes",
+      "charge": "0.50 EUR",
+      "fee": "yes",
+      "opening_hours": "09:00-21:00",
+      "toilets:disposal": "flush",
+      "toilets:handwashing": "yes",
+      "wheelchair": "yes"
+    },
+    "lat": 42.49546912,
+    "lon": 27.480811600000003,
+    "sourceURL": "https://www.openstreetmap.org/way/985556845"
+  },
+  {
+    "type": "node",
+    "id": "5063648843",
+    "tags": {
+      "access": "yes",
+      "amenity": "toilets",
+      "check_date": "2023-08-29",
+      "fee": "yes",
+      "seasonal": "spring;summer;autumn"
+    },
+    "lat": 42.4915754,
+    "lon": 27.480838,
+    "sourceURL": "https://www.openstreetmap.org/node/5063648843"
+  }
+]

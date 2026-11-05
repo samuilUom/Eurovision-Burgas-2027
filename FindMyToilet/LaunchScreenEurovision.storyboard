@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="controller">
+    <device id="retina6_12" orientation="portrait" appearance="light" />
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504" />
+        <capability name="Safe area layout guides" minToolsVersion="9.0" />
+        <capability name="Named colors" minToolsVersion="9.0" />
+        <capability name="System colors in document resources" minToolsVersion="11.0" />
+    </dependencies>
+    <scenes>
+        <scene sceneID="scene">
+            <objects>
+                <viewController id="controller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" clipsSubviews="YES" contentMode="scaleAspectFill" image="EventLaunchBackdrop" alpha="1" translatesAutoresizingMaskIntoConstraints="NO" id="map-backdrop" />
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="EventLaunchOrbit" translatesAutoresizingMaskIntoConstraints="NO" id="orbit" tag="110" />
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="EventLaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="logo" tag="112" />
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="toilet" tag="111">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Eurovision" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="title">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30" />
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Burgas 2027" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="subtitle">
+                                <fontDescription key="fontDescription" type="system" pointSize="20" />
+                                <color key="textColor" red="0.88" green="0.75" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Откриваме ритъма на града…" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="loading-copy">
+                                <fontDescription key="fontDescription" type="system" pointSize="15" />
+                                <color key="textColor" red="0.72" green="0.70" blue="0.81" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="EventLoadingBars" translatesAutoresizingMaskIntoConstraints="NO" id="loading-bars" tag="114" />
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe" />
+                        <color key="backgroundColor" name="EventLaunchBackground" />
+                        <constraints>
+                            <constraint firstItem="orbit" firstAttribute="width" constant="268" id="c0" />
+                            <constraint firstItem="orbit" firstAttribute="height" constant="268" id="c1" />
+                            <constraint firstItem="orbit" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="c2" />
+                            <constraint firstItem="orbit" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="0" id="c3" />
+                            <constraint firstItem="logo" firstAttribute="width" constant="112" id="c4" />
+                            <constraint firstItem="logo" firstAttribute="height" constant="112" id="c5" />
+                            <constraint firstItem="logo" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="c6" />
+                            <constraint firstItem="logo" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="0" id="c7" />
+                            <constraint firstItem="toilet" firstAttribute="width" constant="24" id="c8" />
+                            <constraint firstItem="toilet" firstAttribute="height" constant="28" id="c9" />
+                            <constraint firstItem="toilet" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="c10" />
+                            <constraint firstItem="toilet" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="-110" id="c11" />
+                            <constraint firstItem="title" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="c12" />
+                            <constraint firstItem="title" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="160" id="c13" />
+                            <constraint firstItem="subtitle" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="c14" />
+                            <constraint firstItem="subtitle" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="191" id="c15" />
+                            <constraint firstItem="map-backdrop" firstAttribute="leading" secondItem="view" secondAttribute="leading" id="map-leading" />
+                            <constraint firstItem="map-backdrop" firstAttribute="trailing" secondItem="view" secondAttribute="trailing" id="map-trailing" />
+                            <constraint firstItem="map-backdrop" firstAttribute="top" secondItem="view" secondAttribute="top" id="map-top" />
+                            <constraint firstItem="map-backdrop" firstAttribute="bottom" secondItem="view" secondAttribute="bottom" id="map-bottom" />
+                            <constraint firstItem="loading-copy" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="loading-x" />
+                            <constraint firstItem="loading-copy" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="228" id="loading-y" />
+                            <constraint firstItem="loading-bars" firstAttribute="width" constant="70" id="bars-width" />
+                            <constraint firstItem="loading-bars" firstAttribute="height" constant="28" id="bars-height" />
+                            <constraint firstItem="loading-bars" firstAttribute="centerX" secondItem="view" secondAttribute="centerX" constant="0" id="bars-centerX" />
+                            <constraint firstItem="loading-bars" firstAttribute="centerY" secondItem="view" secondAttribute="centerY" constant="267" id="bars-centerY" />
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="responder" userLabel="First Responder" sceneMemberID="firstResponder" />
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EventLaunchLogo" width="112" height="112" />
+        <image name="EventLaunchOrbit" width="268" height="268" />
+        <image name="music.note" catalog="system" width="128" height="128" />
+        <namedColor name="EventLaunchBackground">
+            <color red="0.045" green="0.035" blue="0.110" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.235" green="0.235" blue="0.263" alpha="0.6" colorSpace="custom" customColorSpace="sRGB" />
+        </systemColor>
+        <image name="EventLaunchBackdrop" width="430" height="932" />
+        <image name="EventLoadingBars" width="70" height="28" />
+    </resources>
+</document>
