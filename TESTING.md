@@ -1,5 +1,11 @@
 # App verification
 
+## Map interaction checks
+
+- 89 discovery, map, favourites and community regression checks passed. Map coverage includes neighbourhood searches after category changes, exact camera snapshot isolation, pinch recognition during movement, deceleration, stale callback rejection, explicit recentering, unchanged pins, and valid search tiles near the date line and poles.
+- Full iOS source type checking and the unsigned iPhone simulator build passed. The Xcode project file also passed validation.
+- Interactive simulator testing was unavailable because CoreSimulatorService could not connect. No phone installation or on-device gesture verification was performed. On a device, check pinch/pan/rotation, Map → List → Map, hospital/pharmacy switching after zooming, Search this area, and moving the map while Around me is awaiting a location fix.
+
 ## 2026-10-13 version 0.12.0 — Google reviews activated
 
 - Public component deployment succeeded at `https://burgas-restaurant-google-reviews.v7d7fqybzr.chatgpt.site/`. Real Google search returned Бистро "Ореха" at the expected address. Selecting it and opening Отзиви displayed Google's rating and review text with reviewer identity/date and attribution. Proof: `../../work/google-reviews-live.jpg`.

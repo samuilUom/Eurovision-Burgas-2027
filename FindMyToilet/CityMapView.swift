@@ -6,7 +6,8 @@ struct CityMapView: UIViewRepresentable {
     let pins: [CityMapPin]
     let viewport: CityMapViewport
     let showUserLocation: Bool
-    let onRegionChange: (MKCoordinateRegion, Bool) -> Void
+    let onUserInteraction: () -> Void
+    let onRegionChange: (MKCoordinateRegion, MKMapCamera, Bool) -> Void
     let onSelect: (String) -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
@@ -19,7 +20,8 @@ struct CityMapView: UIViewRepresentable {
         map.register(PlaceMarkerView.self, forAnnotationViewWithReuseIdentifier: "city-place")
         // Restore the last visible camera if coming back from list mode.
         context.coordinator.cameraID = viewport.camera.id
-        map.setRegion(viewport.region, animated: false)
+        if let camera = viewport.restoredCamera { map.setCamera(camera, animated: false) }
+        else { map.setRegion(viewport.region, animated: false) }
         map.delegate = context.coordinator
         context.coordinator.update(pins: pins, in: map)
         map.showsUserLocation = showUserLocation
@@ -30,7 +32,7 @@ struct CityMapView: UIViewRepresentable {
         coordinator.owner = self
         if coordinator.cameraID != viewport.camera.id {
             coordinator.cameraID = viewport.camera.id
-            coordinator.userMoved = false
+            coordinator.interaction.reset()
             map.setRegion(viewport.camera.region, animated: false)
         }
         if map.showsUserLocation != showUserLocation { map.showsUserLocation = showUserLocation }
@@ -89,7 +91,7 @@ struct CityMapView: UIViewRepresentable {
     final class Coordinator: NSObject, MKMapViewDelegate {
         var owner: CityMapView
         var cameraID: UUID?
-        var userMoved = false
+        var interaction = CityMapInteraction()
         var active = true
         private var annotations: [String: PinAnnotation] = [:]
         init(_ owner: CityMapView) { self.owner = owner }
@@ -142,14 +144,29 @@ struct CityMapView: UIViewRepresentable {
             }
         }
         func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-            userMoved = Self.hasActiveGesture(mapView)
+            recordMovement(in: mapView)
+        }
+        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+            // At regionWillChange a recognizer can still be .possible. Observe it during motion too.
+            recordMovement(in: mapView)
         }
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            let region = mapView.region, moved = userMoved, request = cameraID
-            userMoved = false
+            recordMovement(in: mapView)
+            let region = mapView.region, request = cameraID, revision = interaction.revision
+            guard let camera = mapView.camera.copy() as? MKMapCamera else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self, self.active, self.cameraID == request,
+                      let moved = self.interaction.complete(revision: revision) else { return }
+                self.owner.onRegionChange(region, camera, moved)
+            }
+        }
+        private func recordMovement(in mapView: MKMapView) {
+            guard interaction.changed(userGesture: Self.hasActiveGesture(mapView)) else { return }
+            let request = cameraID
+            // Stop an outstanding location recenter when the gesture begins, not only after it ends.
             DispatchQueue.main.async { [weak self] in
                 guard let self, self.active, self.cameraID == request else { return }
-                self.owner.onRegionChange(region, moved)
+                self.owner.onUserInteraction()
             }
         }
         private static func hasActiveGesture(_ view: UIView) -> Bool {

@@ -349,6 +349,7 @@ struct EventHomeView: View {
     @State private var mapMode = true
     @State private var viewport = CityMapViewport()
     @State private var searchRegion = CitySearchArea.burgas
+    @State private var hasPreparedSearch = false
     @State private var refreshID = 0
     @State private var forceSearch = false
     @State private var awaitingLocation = false
@@ -451,10 +452,11 @@ struct EventHomeView: View {
                 }
             }
             .task(id: searchIdentity) {
-                if (category == .restaurants || category.isHealthcare || category.isFuel) && refreshID == 0 && query.isEmpty && !viewport.needsSearch {
-                    searchRegion = CitySearchArea.restaurantBurgas
-                }
                 guard isActive, category != .toilets else { search.cancel(clear: true); return }
+                if !hasPreparedSearch {
+                    searchRegion = viewport.discoveryRegion(for: category)
+                    hasPreparedSearch = true
+                }
                 search.prepare(category: category, query: query, region: searchRegion, shopFilter: shopFilter)
                 do { try await Task.sleep(for: .milliseconds(350)) } catch { return }
                 let force = forceSearch
@@ -462,13 +464,15 @@ struct EventHomeView: View {
                 await search.search(category: category, query: query, region: searchRegion, shopFilter: shopFilter, force: force)
             }
             .onChange(of: category) { previous, current in
-                // Healthcare filters replace pins without resetting the camera, search area or text.
-                if previous.navigationGroup == current.navigationGroup { return }
-                search.cancel(); query = ""
-                searchRegion = current.isHealthcare || current.isFuel || current == .restaurants ? CitySearchArea.restaurantBurgas : viewport.region
+                // Keep text within the health section, and search the area the visitor is viewing.
+                search.cancel()
+                if previous.navigationGroup != current.navigationGroup { query = "" }
+                searchRegion = viewport.discoveryRegion(for: current)
                 viewport.markSearched()
             }
             .onChange(of: shopFilter) { _, _ in search.cancel() }
+            .onChange(of: isActive) { _, active in if !active { awaitingLocation = false } }
+            .onChange(of: location.message) { _, message in if message != nil { awaitingLocation = false } }
             .onChange(of: location.location) { _, fix in
                 guard awaitingLocation, let fix else { return }
                 awaitingLocation = false
@@ -511,7 +515,7 @@ struct EventHomeView: View {
                         CategoryChip(category: value, selected: category.navigationGroup == value) {
                             guard category.navigationGroup != value else { return }
                             search.cancel()
-                            category = value; query = ""; searchRegion = category.isHealthcare || category.isFuel || category == .restaurants ? CitySearchArea.restaurantBurgas : viewport.region; viewport.markSearched()
+                            category = value; query = ""; searchRegion = viewport.discoveryRegion(for: value); viewport.markSearched()
                         }
                     }
                 }.padding(.horizontal, 16)
@@ -565,7 +569,11 @@ struct EventHomeView: View {
     }
     private var cityMap: some View {
         CityMapView(pins: pins, viewport: viewport, showUserLocation: location.location != nil,
-                    onRegionChange: { region, moved in viewport.record(region, userMoved: moved) },
+                    onUserInteraction: { awaitingLocation = false },
+                    onRegionChange: { region, camera, moved in
+                        viewport.record(region, userMoved: moved, mapCamera: camera)
+                        if moved { awaitingLocation = false }
+                    },
                     onSelect: { id in
                         if category == .toilets { selectedToilet = toilets.first { CityMapPin(toilet: $0).id == id } }
                         else if let bus = transit.vehicles.first(where: { CityMapPin(bus: $0).id == id }) { selectedBus = bus }
@@ -576,6 +584,7 @@ struct EventHomeView: View {
                     Button { awaitingLocation = true; location.request() } label: { Image(systemName: "location.fill").frame(width: 44, height: 44) }
                         .accessibilityLabel("Около мен").disabled(location.isLocating)
                     Button {
+                        awaitingLocation = false
                         viewport.recenter(CitySearchArea.burgas)
                         searchRegion = CitySearchArea.burgas
                         if category != .toilets { refreshID += 1 }

@@ -595,6 +595,91 @@ final class CityMapRegressionTests: XCTestCase {
         XCTAssertTrue(changes.removed.isEmpty)
         XCTAssertTrue(changes.upserted.isEmpty)
     }
+    func testCategorySwitchUsesTheZoomedNeighbourhoodEvenAfterSearchingIt() {
+        var viewport = CityMapViewport()
+        XCTAssertEqual(viewport.discoveryRegion(for: .restaurants).span.latitudeDelta, CitySearchArea.restaurantBurgas.span.latitudeDelta)
+        let neighbourhood = MKCoordinateRegion(center: .init(latitude: 42.515, longitude: 27.46),
+            span: .init(latitudeDelta: 0.004, longitudeDelta: 0.006))
+        viewport.record(neighbourhood, userMoved: true)
+        viewport.markSearched()
+        let command = viewport.camera.id
+        for category in EventCategory.allCases {
+            let area = viewport.discoveryRegion(for: category)
+            XCTAssertEqual(area.center.latitude, neighbourhood.center.latitude)
+            XCTAssertEqual(area.center.longitude, neighbourhood.center.longitude)
+            XCTAssertEqual(area.span.latitudeDelta, neighbourhood.span.latitudeDelta)
+            XCTAssertEqual(area.span.longitudeDelta, neighbourhood.span.longitudeDelta)
+        }
+        XCTAssertEqual(viewport.camera.id, command)
+        XCTAssertFalse(viewport.needsSearch)
+    }
+    func testLayoutDoesNotChooseAnAreaButExplicitRecenterDoes() {
+        var viewport = CityMapViewport()
+        viewport.record(CitySearchArea.burgas, userMoved: false)
+        XCTAssertFalse(viewport.hasChosenArea)
+        XCTAssertEqual(viewport.discoveryRegion(for: .pharmacies).span.latitudeDelta, CitySearchArea.restaurantBurgas.span.latitudeDelta)
+        viewport.recenter(CitySearchArea.burgas)
+        XCTAssertTrue(viewport.hasChosenArea)
+        XCTAssertEqual(viewport.discoveryRegion(for: .pharmacies).span.latitudeDelta, CitySearchArea.burgas.span.latitudeDelta)
+    }
+    func testCameraSnapshotPreservesZoomAndHeadingIndependentlyOfTheLiveMap() throws {
+        var viewport = CityMapViewport()
+        let camera = MKMapCamera(lookingAtCenter: CitySearchArea.burgas.center, fromDistance: 750, pitch: 0, heading: 42)
+        viewport.record(CitySearchArea.burgas, userMoved: true, mapCamera: camera)
+        camera.heading = 90
+        camera.centerCoordinateDistance = 2000
+        viewport.markSearched()
+        let saved = try XCTUnwrap(viewport.restoredCamera)
+        XCTAssertEqual(saved.heading, 42, accuracy: 0.01)
+        XCTAssertEqual(saved.centerCoordinateDistance, 750, accuracy: 0.01)
+        viewport.recenter(CitySearchArea.restaurantBurgas)
+        XCTAssertNil(viewport.restoredCamera)
+    }
+    func testPinchIntentSurvivesLateGestureRecognitionAndDeceleration() {
+        var interaction = CityMapInteraction()
+        XCTAssertFalse(interaction.changed(userGesture: false)) // The recognizer is not active yet.
+        XCTAssertTrue(interaction.changed(userGesture: true))   // Cancel pending location recenter now.
+        XCTAssertFalse(interaction.changed(userGesture: true))  // Further frames do not repeat it.
+        XCTAssertFalse(interaction.changed(userGesture: false)) // Fingers lift; the map is still settling.
+        XCTAssertEqual(interaction.complete(revision: interaction.revision), true)
+        interaction.changed(userGesture: false) // A later layout-only callback is not a gesture.
+        XCTAssertEqual(interaction.complete(revision: interaction.revision), false)
+    }
+    func testQueuedRegionCannotReplaceASecondGestureOrExplicitRecenter() {
+        var interaction = CityMapInteraction()
+        interaction.changed(userGesture: true)
+        let firstZoom = interaction.revision
+        interaction.changed(userGesture: true)
+        XCTAssertNil(interaction.complete(revision: firstZoom))
+        XCTAssertEqual(interaction.complete(revision: interaction.revision), true)
+        interaction.changed(userGesture: true)
+        let beforeRecenter = interaction.revision
+        interaction.reset()
+        XCTAssertNil(interaction.complete(revision: beforeRecenter))
+        interaction.changed(userGesture: false)
+        XCTAssertEqual(interaction.complete(revision: interaction.revision), false)
+    }
+    func testLayoutBeforeDeliveryKeepsPendingUserIntentForTheLatestRegion() {
+        var interaction = CityMapInteraction()
+        interaction.changed(userGesture: true)
+        let queuedZoom = interaction.revision
+        interaction.changed(userGesture: false)
+        XCTAssertNil(interaction.complete(revision: queuedZoom))
+        XCTAssertEqual(interaction.complete(revision: interaction.revision), true)
+    }
+    func testZoomedOutSearchTilesStayValidAcrossTheDateLineAndPoles() {
+        for center in [CLLocationCoordinate2D(latitude: 80, longitude: 179),
+                       CLLocationCoordinate2D(latitude: -80, longitude: -179)] {
+            let area = MKCoordinateRegion(center: center, span: .init(latitudeDelta: 60, longitudeDelta: 100))
+            let tiles = CitySearchArea.restaurantRegions(in: area)
+            XCTAssertFalse(tiles.isEmpty)
+            XCTAssertLessThanOrEqual(tiles.count, 9)
+            XCTAssertTrue(tiles.allSatisfy(CityMapViewport.isValid))
+            XCTAssertTrue(tiles.allSatisfy { CitySearchArea.contains($0.center, in: area) })
+            let acrossDateLine = CLLocationCoordinate2D(latitude: center.latitude, longitude: -center.longitude)
+            XCTAssertTrue(tiles.contains { CitySearchArea.contains(acrossDateLine, in: $0) })
+        }
+    }
 }
 
 final class CommunityPlacesRegressionTests: XCTestCase {

@@ -54,13 +54,18 @@ enum CitySearchArea {
         let lat = region.span.latitudeDelta / 3, lon = region.span.longitudeDelta / 3
         // Central tiles first; nine bounded sequential requests, not an unbounded crawl.
         let offsets = [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
-        return offsets.map { row, column in
-            MKCoordinateRegion(center: .init(latitude: region.center.latitude + Double(row) * lat,
-                longitude: region.center.longitude + Double(column) * lon), span: .init(latitudeDelta: lat, longitudeDelta: lon))
+        return offsets.compactMap { row, column -> MKCoordinateRegion? in
+            let centerLatitude = region.center.latitude + Double(row) * lat
+            let south = max(-90, centerLatitude - lat / 2), north = min(90, centerLatitude + lat / 2)
+            guard north > south else { return nil }
+            let longitude = (region.center.longitude + Double(column) * lon + 540)
+                .truncatingRemainder(dividingBy: 360) - 180
+            return MKCoordinateRegion(center: .init(latitude: (south + north) / 2, longitude: longitude),
+                span: .init(latitudeDelta: north - south, longitudeDelta: lon))
         }
     }
     static func contains(_ coordinate: CLLocationCoordinate2D, in region: MKCoordinateRegion) -> Bool {
-        guard CLLocationCoordinate2DIsValid(coordinate) else { return false }
+        guard CLLocationCoordinate2DIsValid(coordinate), CityMapViewport.isValid(region) else { return false }
         let longitudeDistance = abs((coordinate.longitude - region.center.longitude + 540)
             .truncatingRemainder(dividingBy: 360) - 180)
         return abs(coordinate.latitude - region.center.latitude) <= region.span.latitudeDelta / 2
@@ -241,24 +246,59 @@ struct CityMapCameraRequest {
 struct CityMapViewport {
     private(set) var region = CitySearchArea.burgas
     private(set) var camera = CityMapCameraRequest(region: CitySearchArea.burgas)
+    private(set) var restoredCamera: MKMapCamera?
     private(set) var needsSearch = false
-    mutating func record(_ value: MKCoordinateRegion, userMoved: Bool) {
+    private(set) var hasChosenArea = false
+    mutating func record(_ value: MKCoordinateRegion, userMoved: Bool, mapCamera: MKMapCamera? = nil) {
         guard Self.isValid(value) else { return }
         region = value
-        if userMoved { needsSearch = true }
+        if let mapCamera { restoredCamera = mapCamera.copy() as? MKMapCamera }
+        if userMoved { needsSearch = true; hasChosenArea = true }
     }
     mutating func recenter(_ value: MKCoordinateRegion) {
         guard Self.isValid(value) else { return }
         region = value
         camera = CityMapCameraRequest(region: value)
+        restoredCamera = nil
         needsSearch = false
+        hasChosenArea = true
     }
     mutating func markSearched() { needsSearch = false }
+    func discoveryRegion(for category: EventCategory) -> MKCoordinateRegion {
+        // Start with the city catalogue, but respect a neighbourhood the visitor chose.
+        if !hasChosenArea && (category == .restaurants || category.isHealthcare || category.isFuel) {
+            return CitySearchArea.restaurantBurgas
+        }
+        return region
+    }
     static func isValid(_ value: MKCoordinateRegion) -> Bool {
         CLLocationCoordinate2DIsValid(value.center)
             && value.span.latitudeDelta.isFinite && value.span.longitudeDelta.isFinite
             && value.span.latitudeDelta > 0 && value.span.latitudeDelta <= 180
             && value.span.longitudeDelta > 0 && value.span.longitudeDelta <= 360
+    }
+}
+
+// A pinch/pan can trigger several region callbacks, including callbacks during deceleration.
+// Latch user intent until the latest settled region is actually delivered to SwiftUI.
+struct CityMapInteraction {
+    private(set) var revision: UInt64 = 0
+    private var userMoved = false
+    @discardableResult mutating func changed(userGesture: Bool) -> Bool {
+        let began = userGesture && !userMoved
+        revision &+= 1
+        userMoved = userMoved || userGesture
+        return began
+    }
+    mutating func complete(revision expected: UInt64) -> Bool? {
+        guard expected == revision else { return nil }
+        let moved = userMoved
+        userMoved = false
+        return moved
+    }
+    mutating func reset() {
+        revision &+= 1
+        userMoved = false
     }
 }
 
